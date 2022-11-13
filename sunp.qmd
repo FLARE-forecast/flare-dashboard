@@ -42,6 +42,7 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 ## Most recent forecasts
 
+This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")` and the most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
 
 ```{r}
 ## date of each team's most recent forecast
@@ -53,4 +54,22 @@ df_insitu_scores |>
   facet_wrap(~depth) +
   labs(y = "temperature") +
   theme_bw()
+```
+
+```{r eval = FALSE}
+df_horizon <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         site_id == "sunp",
+         depth %in% c(1.0, 8.0),
+         horizon %in% c(2,7,14)) |> 
+  dplyr::collect()
+
+df_horizon |> 
+  ggplot(aes(x = observation, y = mean, color = horizon)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  labs(x = "observed temperature", y = "forecasted temperature") +
+  theme_bw()
+
+
 ```

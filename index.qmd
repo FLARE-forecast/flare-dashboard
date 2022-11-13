@@ -70,8 +70,6 @@ neon  |>
   tm_bubbles(size = "n", popup.vars = c("site_id", "n"), jitter =TRUE) 
 ```
 
-Sites scaled by number of forecasts submitted.
-
 ------------------------------------------------------------------------
 
-This material is based upon work supported by the National Science Foundation under Grant XXXXX. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

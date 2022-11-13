@@ -5,6 +5,13 @@
 "features": [
 { "type": "Feature", "properties": { "site_id": "Falling Creek", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -79.837217, 37.303153 ] } },
 { "type": "Feature", "properties": { "site_id": "Beaver Dam", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -79.815936, 37.312909 ] } },
-{ "type": "Feature", "properties": { "site_id": "Lake Sunapee", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -72.058199, 43.392869 ] } }
+{ "type": "Feature", "properties": { "site_id": "Lake Sunapee", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -72.058199, 43.392869 ] } },
+{ "type": "Feature", "properties": { "site_id": "Carvins Cove Reservoir", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -79.95856, 37.370259 ] } },
+{ "type": "Feature", "properties": { "site_id": "Barco Lake", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -82.00909, 29.67647 ] } },
+{ "type": "Feature", "properties": { "site_id": "Crampton Lake", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -89.47825, 46.21111 ] } },
+{ "type": "Feature", "properties": { "site_id": "Little Rock Lake", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -89.704767, 45.998269 ] } },
+{ "type": "Feature", "properties": { "site_id": "Prairie Lake", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -99.11388, 47.15909 ] } },
+{ "type": "Feature", "properties": { "site_id": "Prairie Pothole", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -99.25055, 47.12999 ] } },
+{ "type": "Feature", "properties": { "site_id": "Suggs Lake", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -82.01617, 29.68705] } }
 ]
 }

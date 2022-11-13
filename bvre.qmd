@@ -42,6 +42,8 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 ## Most recent forecasts
 
+This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")` and the most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
+
 ```{r}
 ## date of each team's most recent forecast
 df_insitu_scores |> 
