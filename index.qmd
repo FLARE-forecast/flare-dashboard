@@ -1,5 +1,5 @@
 ---
-title: "home"
+title: "Home"
 ---
 
 Welcome the FLARE Dashboard.
@@ -74,4 +74,4 @@ Sites scaled by number of forecasts submitted.
 
 ------------------------------------------------------------------------
 
-This material is based upon work supported by the National Science Foundation under Grant DBI-1942280. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
+This material is based upon work supported by the National Science Foundation under Grant XXXXX. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

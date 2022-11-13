@@ -1,5 +1,5 @@
 ---
-title: "Falling Creek Reservior"
+title: "Lake Sunapee"
 ---
 
 ```{r, include=FALSE}
@@ -26,7 +26,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
 most_recent <-  arrow::open_dataset(s3) |> 
-  filter(site_id == "fcre") |> 
+  filter(site_id == "sunp") |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -34,7 +34,7 @@ most_recent <-  arrow::open_dataset(s3) |>
 df_insitu_scores <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          depth %in% c(1.0, 8.0),
-         site_id == "fcre",
+         site_id == "sunp",
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -42,7 +42,6 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 ## Most recent forecasts
 
-Below is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom.
 
 ```{r}
 ## date of each team's most recent forecast

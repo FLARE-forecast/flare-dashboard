@@ -42,8 +42,6 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 ## Most recent forecasts
 
-Below is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom.
-
 ```{r}
 ## date of each team's most recent forecast
 df_insitu_scores |> 

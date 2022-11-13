@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "home",
+    "title": "Home",
     "section": "",
-    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nSites scaled by number of forecasts submitted.\n\nThis material is based upon work supported by the National Science Foundation under Grant DBI-1942280. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nSites scaled by number of forecasts submitted.\n\nThis material is based upon work supported by the National Science Foundation under Grant XXXXX. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "phenology.html#most-recent-forecasts",
@@ -117,5 +117,26 @@
     "title": "Weather",
     "section": "Average skill by start date",
     "text": "Average skill by start date"
+  },
+  {
+    "objectID": "sunp.html#most-recent-forecasts",
+    "href": "sunp.html#most-recent-forecasts",
+    "title": "Lake Sunapee",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts"
+  },
+  {
+    "objectID": "bvre.html#most-recent-forecasts",
+    "href": "bvre.html#most-recent-forecasts",
+    "title": "Beaver Dam Reservior",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts"
+  },
+  {
+    "objectID": "fcre.html#most-recent-forecasts",
+    "href": "fcre.html#most-recent-forecasts",
+    "title": "Falling Creek Reservior",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts"
   }
 ]
