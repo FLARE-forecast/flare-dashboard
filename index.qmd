@@ -2,13 +2,11 @@
 title: "home"
 ---
 
-Welcome the [EFI](https://ecoforecast.org) NEON Forecast Challenge Dashboard.
+Welcome the FLARE Dashboard.
 
-This site provides daily updates to visualize recent scores of all forecasts submitted to the challenge. This site is generated using [quarto](https://quarto.org) and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.
+This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using [quarto](https://quarto.org) and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.
 
-EFI currently has five open challenge themes! Browse the current forecasts or submit your own. Learn more about the [current challenges](https://projects.ecoforecast.org/neon4cast-docs).
-
-### NEON Ecological Forecasting Challenge sites
+### FLARE sites
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, include=FALSE)
@@ -51,8 +49,8 @@ if (!file.exists("neon.json")) {
                               "northBoundingCoordinate"),
                    crs = 4326) |> 
     select(-eastBoundingCoordinate,
-           -southBoundingCoordinate) |>
-    rename(theme = target_id)
+           -southBoundingCoordinate) #|>
+    #rename(theme = target_id)
   #neon2 <- neon |>
   #  tidyr::pivot_wider(names_from = "theme", values_from = site_id) |> 
   #  rename(terrestrial = terrestrial_daily) |> 
@@ -67,9 +65,9 @@ if (!file.exists("neon.json")) {
 
 ```{r fig.height=5, fig.width=5, echo=FALSE, include=TRUE}
 tmap::tmap_mode("view")
-neon  |> filter(theme != "terrestrial_30min") |>
+neon  |>
   tm_shape(bbox=c(-115,32,-74,48)) + 
-  tm_bubbles(col="theme", size = "n", popup.vars = c("site_id", "n"), jitter =TRUE) 
+  tm_bubbles(size = "n", popup.vars = c("site_id", "n"), jitter =TRUE) 
 ```
 
 Sites scaled by number of forecasts submitted.

@@ -1,5 +1,5 @@
 ---
-title: "Aquatics"
+title: "Falling Creek Reservior"
 ---
 
 ```{r, include=FALSE}
@@ -17,16 +17,19 @@ library(score4cast)
 library(thematic)
 thematic_rmd(bg="white", fg="black", accent="blue")
 
-source("R/plot-utils.R")
+#source("R/plot-utils.R")
 
 
 ```
 
 ```{r include=FALSE}
-dashboard <- yaml::read_yaml("dashboard.yml") # Some configurable options
-combined <- arrow::open_dataset("cache/parquet/aquatics") |>
-  filter(datetime >= lubridate::as_datetime(dashboard$reference_datetime)) |>
-  collect() |> score4cast::include_horizon()
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(1.0, 8.0),
+         site_id == "fcre",
+         reference_datetime == "2022-11-11 00:00:00") |> 
+  dplyr::collect()
 
 ```
 
@@ -36,100 +39,12 @@ Below is the latest forecasts for which we have at least 15 observations. Mouse 
 
 ```{r}
 ## date of each team's most recent forecast
-days <- combined |> 
-  group_by(model_id) |> 
-  summarise(date = max(reference_datetime))
-
-## date of each team's most recent forecast for which data is available
-combined |>
-  filter(!is.na(observation)) |>
-  count(variable, model_id, reference_datetime, site_id) |>
-  filter(n > 15) |> ungroup() |>
-  group_by(model_id) |>
-  summarise(date = max(reference_datetime))
-
-
-## last date for which data is available (end of the previous month)
-combined |>
-  filter(!is.na(observation)) |>
-  filter(datetime == max(datetime)) |>
-  summarise(date = max(datetime))
-
-
-day <- combined |>
-  filter(!is.na(observation)) |>
-  count(variable, model_id, reference_datetime, site_id) |>
-  filter(n > 15) |> 
-  # at least 15 data points
-  filter(reference_datetime == max(reference_datetime, na.rm = TRUE)) |> # must happen second
-  select(reference_datetime) |> 
-  distinct(reference_datetime) |>
-  first()
+df_insitu_scores |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  geom_point(aes(y = observation)) +
+  facet_wrap(~depth) +
+  labs(y = "temperature") +
+  theme_bw()
 ```
-
-::: panel-tabset
-## Oxygen
-
-```{r}
-combined |> filter(reference_datetime == day, variable == "oxygen") |> forecast_plots()
-combined |> filter(reference_datetime >= day)
-```
-
-## Temperature
-
-```{r}
-combined |> filter(reference_datetime == day, variable == "temperature") |> forecast_plots()
-```
-
-## Chlorophyll-A
-
-```{r}
-# combined |> filter(reference_datetime == day, variable == "chla") |> forecast_plots()
-```
-:::
-
-```{r}
-# no persistence submissions...
-filled_scores <- score4cast::fill_scores(combined, "climatology")
-```
-
-```{r}
-leaderboard <-  filled_scores |> 
-  group_by(variable, model_id) |>
-  summarise(crps = mean(crps, na.rm=T),
-            logs = mean(logs, na.rm=T),
-            percent_na = mean(is.na(crps_model)),
-            .groups = "drop") 
-```
-
-<!-- Heading 1: navbar -->
-
-::: panel-tabset
-## Oxygen
-
-```{r}
-leaderboard_plots(leaderboard, NULL, "oxygen")
-```
-
-## Temperature
-
-```{r}
-leaderboard_plots(leaderboard, NULL, "temperature")
-```
-
-## Chlorophyll-A
-
-```{r}
-leaderboard_plots(leaderboard, NULL, "chla")
-```
-:::
-
-------------------------------------------------------------------------
-
-Overall team rankings by forecast skill, as well as skill by date of initial forecast.
-
-**Top plots**: Forecast skill measured by CRPS and log skill. Lower values indicate better predictions. Both score probabilistic forecasts, but log skill penalizes observations outside expected range much more heavily.
-
-**Lower plot**: Forecast skill over time at each site. Not all teams submit multiple forecasts.
-
-**Tip**: *Mouse over a color to highlight the scores of one team*
