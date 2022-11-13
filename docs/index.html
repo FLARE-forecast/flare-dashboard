@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-0.9.577">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,15 +11,10 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
-  vertical-align: middle;
-}
 </style>
 
 
@@ -38,7 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -86,11 +81,9 @@ background-size: cover;
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+      <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">FLARE (Forecasting Lake and Reservior Ecosystems)</span>
-    </a>
-  </div>
+  </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -131,7 +124,7 @@ background-size: cover;
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -152,11 +145,10 @@ background-size: cover;
 <div class="cell" data-fig.showtext="false">
 <div class="cell-output-display">
 
-<div id="htmlwidget-bfb4abc5f5e51301754c" style="width:100%;height:650px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bfb4abc5f5e51301754c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircles","args":[[36.7747029975009,37.2519844682582,43.171687714858,37.4656620509512,29.6876375439645,46.1908495073543,45.9166592101541,47.2324524151749,47.2767914194066,29.6589923491695],[-79.8627765912421,-79.5707072157214,-72.229274356418,-80.1334186600448,-82.3392589378104,-89.3891141290594,-89.0841751213185,-99.3184287557947,-99.2653565128384,-82.3473861650609],[39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165],["Falling.Creek","Beaver.Dam","Lake.Sunapee","Carvins.Cove.Reservoir","Barco.Lake","Crampton.Lake","Little.Rock.Lake","Prairie.Lake","Prairie.Pothole","Suggs.Lake"],"neon",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#999999","#999999","#999999","#999999","#999999","#999999","#999999","#999999","#999999","#999999"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1]},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Falling Creek<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Falling Creek<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Beaver Dam<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Beaver Dam<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Sunapee<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Sunapee<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Carvins Cove Reservoir<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Carvins Cove Reservoir<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Barco Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Barco Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Crampton Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Crampton Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Little Rock Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Little Rock Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Pothole<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Pothole<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Suggs Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Suggs Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>"],null,["Falling Creek","Beaver Dam","Lake Sunapee","Carvins Cove Reservoir","Barco Lake","Crampton Lake","Little Rock Lake","Prairie Lake","Prairie Pothole","Suggs Lake"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"neon",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[29.6589923491695,47.2767914194066],"lng":[-99.3184287557947,-72.229274356418]},"fitBounds":[32,-115,48,-74,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ede8c07edb1a96b0d9c6" style="width:100%;height:650px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ede8c07edb1a96b0d9c6">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircles","args":[[37.0604429348729,37.2442011414039,43.3992203865907,37.8343681985115,29.9769550557408,45.9642581104613,46.4210994905769,46.9507669847859,46.9213288245403,29.6235173507172],[-79.8552316909702,-79.5522607188343,-71.4974037112085,-79.9512325695596,-81.7953280243465,-89.5484807877839,-90.0335752003967,-98.6090106052379,-98.899585579723,-81.8153521297888],[39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165,39536.0359742165],["Falling.Creek","Beaver.Dam","Lake.Sunapee","Carvins.Cove.Reservoir","Barco.Lake","Crampton.Lake","Little.Rock.Lake","Prairie.Lake","Prairie.Pothole","Suggs.Lake"],"neon",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#BEBADA","#BEBADA","#8DD3C7","#BEBADA","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1]},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Falling Creek<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Falling Creek<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Beaver Dam<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Beaver Dam<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Sunapee<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Sunapee<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Carvins Cove Reservoir<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Carvins Cove Reservoir<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Barco Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Barco Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Crampton Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Crampton Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Little Rock Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Little Rock Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Pothole<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Pothole<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Suggs Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Suggs Lake<\/nobr><\/td><\/tr><tr><td style=\"color: #888888;\"><nobr>n<\/nobr><\/td><td align=\"right\"><nobr>5<\/nobr><\/td><\/tr><\/table><\/div>"],null,["Falling Creek","Beaver Dam","Lake Sunapee","Carvins Cove Reservoir","Barco Lake","Crampton Lake","Little Rock Lake","Prairie Lake","Prairie Pothole","Suggs Lake"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLegend","args":[{"colors":["#8DD3C7","#FFFFB3","#BEBADA"],"labels":["LSPA","NEON","WVWA"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"unknown","title":"Partner","extra":null,"layerId":"legend401","className":"info legend neon","group":"neon"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"neon",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[29.6235173507172,46.9507669847859],"lng":[-98.899585579723,-71.4974037112085]},"fitBounds":[32,-115,48,-74,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<hr>
 <p>This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
 
 
@@ -165,24 +157,6 @@ background-size: cover;
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -232,8 +206,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      let href = ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

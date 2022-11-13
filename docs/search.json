@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
@@ -18,7 +18,7 @@
     "href": "fcre.html#most-recent-forecasts",
     "title": "Falling Creek Reservior",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-13 14:39:02 and the most recent forecast is from 2022-11-10 19:00:00."
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-13 14:51:24 (Eastern U.S. time) and the most recent forecast is from 2022-11-10 19:00:00 (Eastern U.S. time)."
   },
   {
     "objectID": "about.html",
