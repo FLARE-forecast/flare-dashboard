@@ -33,9 +33,9 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: preload
-        run: |
-          R -e 'source("cache.R")'
+      #- name: preload
+      #  run: |
+      #    R -e 'source("cache.R")'
       - name: Generate dashboard
         # Add any command line argument needed
         run: |
