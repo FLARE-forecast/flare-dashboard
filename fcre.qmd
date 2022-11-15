@@ -56,3 +56,26 @@ df_insitu_scores |>
   labs(y = "temperature") +
   theme_bw()
 ```
+
+Past Performance
+
+```{r}
+df <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(1.0),
+         site_id == "fcre") |> 
+  dplyr::collect() 
+
+bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
+  
+  df |> 
+  filter(horizon %in% c(1,2,3)) |> 
+  ggplot(aes(x = observation, y = mean, color = factor(horizon))) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  ylim(bounds) +
+  xlim(bounds)
+  
+  
+
+```
