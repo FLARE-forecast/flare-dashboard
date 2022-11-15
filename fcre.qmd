@@ -74,8 +74,8 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
   geom_point() +
   geom_abline(slope = 1, intercept = 0) +
   ylim(bounds) +
-  xlim(bounds)
-  
-  
+  xlim(bounds) +
+  labs(x = "observed", y = "predicted") +
+  theme_bw()
 
 ```
