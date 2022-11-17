@@ -49,7 +49,6 @@ This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent$max), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
-message("here")
 ## date of each team's most recent forecast
 df_insitu_scores |> 
   dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York")) |> 
@@ -105,6 +104,7 @@ s3 <- arrow::s3_bucket(bucket = "drivers/noaa/gefs-v12/stage2/parquet/0", endpoi
 noaa_df <- arrow::open_dataset(s3, partitioning = "reference_date") |> 
   filter(variable == "air_temperature",
          reference_date == noaa_date,
+         horizon <= 16, 
          site_id %in% c("sunp","bvre","fcre")) |> 
   select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
   dplyr::collect() |> 
