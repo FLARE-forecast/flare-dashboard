@@ -104,7 +104,7 @@ s3 <- arrow::s3_bucket(bucket = "drivers/noaa/gefs-v12/stage2/parquet/0", endpoi
 noaa_df <- arrow::open_dataset(s3, partitioning = "reference_date") |> 
   filter(variable == "air_temperature",
          reference_date == noaa_date,
-         horizon <= 16, 
+         horizon <= 16 * 24, 
          site_id %in% c("sunp","bvre","fcre")) |> 
   select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
   dplyr::collect() |> 
