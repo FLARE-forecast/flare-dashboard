@@ -27,16 +27,18 @@ s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-
 
 most_recent <-  arrow::open_dataset(s3) |> 
   filter(site_id == "fcre") |> 
-  summarize(max = max(reference_datetime)) |> 
-  collect() |> 
-  pull()
+  summarize(max = max(reference_datetime),
+            min = min(reference_datetime)) |> 
+  collect() 
+
+full_forecast <-as.character(max(c(most_recent$min, lubridate::as_datetime(most_recent$max) - lubridate::days(16))))
 
 df_insitu_scores <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          depth %in% c(1.0, 8.0),
          site_id == "fcre",
-         reference_datetime == most_recent) |> 
-  dplyr::collect()
+         reference_datetime == most_recent$max) |> 
+ dplyr::collect()
 
 ```
 
@@ -44,12 +46,13 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")` (Eastern U.S. time).
 
-The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent$max), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
+message("here")
 ## date of each team's most recent forecast
 df_insitu_scores |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York")) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
@@ -78,6 +81,96 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
   ylim(bounds) +
   xlim(bounds) +
   labs(x = "observed", y = "predicted") +
+  theme_bw()
+
+```
+
+Compare forecasts
+
+```{r}
+s3 <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+df_insitu_forecast <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth == 1.0,
+         reference_datetime == full_forecast,
+         site_id == "fcre") |> 
+  select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
+  dplyr::collect()  |> 
+  mutate(reference_datetime = lubridate::as_datetime(reference_datetime),
+         datetime = lubridate::as_datetime(datetime))
+  
+
+noaa_date <- as.character(lubridate::as_date(df_insitu_forecast$reference_datetime)[1])
+s3 <- arrow::s3_bucket(bucket = "drivers/noaa/gefs-v12/stage2/parquet/0", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+noaa_df <- arrow::open_dataset(s3, partitioning = "reference_date") |> 
+  filter(variable == "air_temperature",
+         reference_date == noaa_date,
+         site_id %in% c("sunp","bvre","fcre")) |> 
+  select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
+  dplyr::collect() |> 
+  mutate(prediction = prediction - 273.15)
+
+  
+
+s3 <- arrow::s3_bucket(bucket = "drivers/inflow/fcre_v2/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+inflow_df <- arrow::open_dataset(s3, partitioning = c("model_id","site_id","cycle","reference_date")) |> 
+  filter(reference_date == noaa_date,
+         cycle == 0,
+         flow_type == "inflow",
+         variable %in% c("TEMP")) |> 
+  select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
+  collect() |> 
+  mutate(reference_datetime = lubridate::as_datetime(reference_datetime),
+         datetime = lubridate::as_datetime(datetime),
+         variable = ifelse(variable == "TEMP","inflow_temperature",variable))
+
+combined <- bind_rows(df_insitu_forecast, noaa_df, inflow_df)
+```
+
+```{r}
+insitu_target_file <- "https://s3.flare-forecast.org/targets/fcre_v2/fcre/fcre-targets-insitu.csv"
+met_targets_file <- "https://s3.flare-forecast.org/targets/fcre_v2/fcre/observed-met_fcre.csv"
+inflow_targets_file <- "https://s3.flare-forecast.org/targets/fcre_v2/fcre/fcre-targets-inflow.csv"
+
+insitu_target <- readr::read_csv(insitu_target_file, show_col_types = FALSE) |>
+  filter(depth == 1.0) |> 
+  #dplyr::mutate(site_id = paste0(site_id,"-",depth)) |> 
+  select(-depth)
+
+met_targets <- readr::read_csv(met_targets_file, show_col_types = FALSE) |> 
+  filter(variable == "air_temperature") |> 
+  mutate(observation = observation - 273.15)
+
+
+inflow_targets <- readr::read_csv(inflow_targets_file, show_col_types = FALSE) |> 
+  filter(variable == "TEMP") |> 
+  mutate(variable = ifelse(variable == "TEMP", "inflow_temperature", variable)) |> 
+  mutate(datetime = lubridate::as_datetime(datetime))
+
+target <- bind_rows(insitu_target, met_targets, inflow_targets)
+
+df2 <- combined %>%
+  score4cast::standardize_forecast() %>%
+  mutate(family = as.character(family)) |> 
+  score4cast::crps_logs_score(target) %>%
+  mutate(horizon = datetime-lubridate::as_datetime(reference_datetime)) %>%
+  mutate(horizon = as.numeric(lubridate::as.duration(horizon),
+                              units = "seconds"),
+         horizon = horizon / 86400)  |> 
+  mutate(variable = ifelse(variable == "temperature", "lake_temperature", variable))
+```
+
+Analyze weather, inflow, and lake forecasts
+
+```{r}
+df2 |> 
+  dplyr::filter(horizon > 0) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  #geom_line(aes(y = mean)) +
+  geom_point(aes(y = observation)) +
+  facet_wrap(~variable, scale = "free") +
+  labs(y = "value") +
   theme_bw()
 
 ```
