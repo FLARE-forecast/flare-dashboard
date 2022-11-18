@@ -4,21 +4,21 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "Welcome the FLARE Dashboard.\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
     "href": "bvre.html#most-recent-forecasts",
     "title": "Beaver Dam Reservior",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-17 10:03:32\nThe most recent forecast is from 2022-11-16 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-18 10:09:54\nThe most recent forecast is from 2022-11-17 19:00:00.\n\n\n\n\n\nPast Performance"
   },
   {
     "objectID": "fcre.html#most-recent-forecasts",
     "href": "fcre.html#most-recent-forecasts",
     "title": "Falling Creek Reservior",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-18 09:40:36 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-17 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-18 10:10:07 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-17 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
   },
   {
     "objectID": "about.html",
@@ -39,7 +39,7 @@
     "href": "sunp.html#most-recent-forecasts",
     "title": "Lake Sunapee",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-18 09:40:20.\nThe most recent forecast is from 2022-11-17 19:00:00."
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-18 10:11:07.\nThe most recent forecast is from 2022-11-17 19:00:00."
   },
   {
     "objectID": "noaa.html",
