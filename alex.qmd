@@ -64,7 +64,7 @@ Past Performance
 ```{r}
 df <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
-         depth %in% c(1.0),
+         depth %in% c(0.5),
          site_id == "ALEX") |> 
   dplyr::collect() 
 
