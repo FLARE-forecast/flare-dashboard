@@ -4,21 +4,28 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "Welcome the FLARE Dashboard.\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
     "href": "bvre.html#most-recent-forecasts",
-    "title": "Beaver Dam Reservior",
+    "title": "Beaver Dam Reservoir",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 07:25:50\nThe most recent forecast is from 2022-11-18 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 16:13:32\nThe most recent forecast is from 2022-11-18 19:00:00.\n\n\n\n\n\nPast Performance"
+  },
+  {
+    "objectID": "alex.html#most-recent-forecasts",
+    "href": "alex.html#most-recent-forecasts",
+    "title": "Lake Alexandrina",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 16:13:39\nThe most recent forecast is from 2022-11-10 19:00:00.\n\n\n\n\n\nPast Performance"
   },
   {
     "objectID": "fcre.html#most-recent-forecasts",
     "href": "fcre.html#most-recent-forecasts",
-    "title": "Falling Creek Reservior",
+    "title": "Falling Creek Reservoir",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 07:26:01 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-18 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 16:13:45 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-18 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
   },
   {
     "objectID": "about.html",
@@ -39,7 +46,7 @@
     "href": "sunp.html#most-recent-forecasts",
     "title": "Lake Sunapee",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 07:26:55.\nThe most recent forecast is from 2022-11-18 19:00:00."
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 16:14:12.\nThe most recent forecast is from 2022-11-18 19:00:00."
   },
   {
     "objectID": "noaa.html",
@@ -75,12 +82,5 @@
     "title": "Weather",
     "section": "Average skill by start date",
     "text": "Average skill by start date"
-  },
-  {
-    "objectID": "alex.html#most-recent-forecasts",
-    "href": "alex.html#most-recent-forecasts",
-    "title": "Lake Alexandrina",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 15:36:20\nThe most recent forecast is from 2022-11-10 19:00:00.\n\n\n\n\n\nPast Performance"
   }
 ]
