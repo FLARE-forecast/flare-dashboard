@@ -34,7 +34,7 @@ most_recent <-  arrow::open_dataset(s3) |>
 df_insitu_scores <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          depth %in% c(0.5, 5.0),
-         site_id == "bvre",
+         site_id == "ALEX",
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
