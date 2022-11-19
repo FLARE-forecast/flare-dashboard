@@ -1,5 +1,5 @@
 ---
-title: "Falling Creek Reservior"
+title: "Falling Creek Reservoir"
 ---
 
 ```{r, include=FALSE}

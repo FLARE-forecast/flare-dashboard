@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "FLARE (Forecasting Lake and Reservior Ecosystems)"
+  title: "FLARE (Forecasting Lake and Reservoir Ecosystems)"
   page-navigation: true
   repo-url: https://github.com/rqthomas/flare-dashboard
   repo-actions: [edit, issue]
