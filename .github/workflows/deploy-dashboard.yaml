@@ -25,10 +25,10 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get -y install libgdal-dev libgeos-dev libproj-dev libudunits2-dev
       - name: Install R deps
-        #shell: Rscript {0}
+        shell: Rscript {0}
         run: |
-          Rscript install.packages("remotes")
-          Rscript remotes::install_deps()
+          install.packages("remotes")
+          remotes::install_deps()
           #remotes::install_version("ggplot2", "3.3.6")
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
