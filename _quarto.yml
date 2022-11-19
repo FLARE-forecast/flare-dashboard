@@ -18,7 +18,8 @@ website:
         icon: tree-fill
       - href: sunp.qmd
         icon: tree-fill
-
+      - href: alex.qmd
+        icon: tree-fill
   page-footer:
     left: "CC-BY"
     right:
