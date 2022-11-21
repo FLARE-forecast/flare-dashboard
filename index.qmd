@@ -69,4 +69,5 @@ neon  |>
   tm_shape(bbox=c(139.168997,-35.436808,-74,48)) + 
   tm_bubbles(col="Partner", popup.vars = c("site_id"), jitter =TRUE) 
 ```
+
 This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

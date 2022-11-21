@@ -81,3 +81,22 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
   theme_bw()
 
 ```
+
+```{r}
+noaa_date <- as.character(lubridate::as_date("2022-11-20"))
+s3 <- arrow::s3_bucket(bucket = "drivers/noaa/gefs-v12/stage2/parquet/0", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+noaa_df <- arrow::open_dataset(s3, partitioning = "reference_date") |> 
+  filter(variable == "air_temperature",
+         reference_date == noaa_date,
+         horizon <= 16 * 24, 
+         site_id %in% c("ALEX")) |> 
+  select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
+  dplyr::collect() |> 
+  mutate(prediction = prediction - 273.15)
+
+
+noaa_df |> ggplot(aes(x = datetime, y = prediction, group = parameter)) +
+  geom_line() +
+  labs(y = "NOAA GEFS air temperature") +
+  theme_bw()
+```
