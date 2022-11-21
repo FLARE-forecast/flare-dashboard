@@ -1,24 +1,52 @@
 [
   {
-    "objectID": "alex.html#most-recent-forecasts",
-    "href": "alex.html#most-recent-forecasts",
-    "title": "Lake Alexandrina",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-20 20:13:06\nThe most recent forecast is from 2022-11-19 19:00:00.\n\n\n\n\n\nPast Performance"
-  },
-  {
-    "objectID": "sunp.html#most-recent-forecasts",
-    "href": "sunp.html#most-recent-forecasts",
-    "title": "Lake Sunapee",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-15 15:44:30.\nThe most recent forecast is from 2022-11-14 19:00:00."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome the FLARE Dashboard.\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
     "href": "bvre.html#most-recent-forecasts",
     "title": "Beaver Dam Reservoir",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 19:54:44\nThe most recent forecast is from 2022-11-18 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-20 20:30:10\nThe most recent forecast is from 2022-11-19 19:00:00.\n\n\n\n\n\nPast Performance"
+  },
+  {
+    "objectID": "alex.html#most-recent-forecasts",
+    "href": "alex.html#most-recent-forecasts",
+    "title": "Lake Alexandrina",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-20 20:30:19\nThe most recent forecast is from 2022-11-19 19:00:00.\n\n\n\n\n\nPast Performance"
+  },
+  {
+    "objectID": "fcre.html#most-recent-forecasts",
+    "href": "fcre.html#most-recent-forecasts",
+    "title": "Falling Creek Reservoir",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-20 20:30:39 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-19 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "aquatics.html#most-recent-forecasts",
+    "href": "aquatics.html#most-recent-forecasts",
+    "title": "Falling Creek Reservior",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nBelow is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom."
+  },
+  {
+    "objectID": "sunp.html#most-recent-forecasts",
+    "href": "sunp.html#most-recent-forecasts",
+    "title": "Lake Sunapee",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-20 20:31:18.\nThe most recent forecast is from 2022-11-19 19:00:00."
   },
   {
     "objectID": "noaa.html",
@@ -54,19 +82,5 @@
     "title": "Weather",
     "section": "Average skill by start date",
     "text": "Average skill by start date"
-  },
-  {
-    "objectID": "aquatics.html#most-recent-forecasts",
-    "href": "aquatics.html#most-recent-forecasts",
-    "title": "Falling Creek Reservior",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nBelow is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom."
-  },
-  {
-    "objectID": "fcre.html#most-recent-forecasts",
-    "href": "fcre.html#most-recent-forecasts",
-    "title": "Falling Creek Reservoir",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-19 19:54:14 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-18 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
   }
 ]
