@@ -1,0 +1,81 @@
+---
+title: "NEON Lakes"
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r setup}
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+
+
+library(thematic)
+thematic_rmd(bg="white", fg="black", accent="blue")
+
+#source("R/plot-utils.R")
+
+
+```
+
+```{r include=FALSE}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id %in% c("BARC")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(0.5),
+         site_id %in% c("BARC"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+```
+
+## Most recent forecasts
+
+This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
+
+::: panel-tabset
+## BARC
+
+```{r}
+## date of each team's most recent forecast
+df_insitu_scores |> 
+  dplyr::filter(site_id == "BARC") |> 
+  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  geom_point(aes(y = observation)) +
+  facet_wrap(~depth) +
+  labs(y = "temperature") +
+  theme_bw()
+```
+
+## OTHER EXAMPLE LAKE
+
+```{r}
+## date of each team's most recent forecast
+df_insitu_scores |> 
+  dplyr::filter(site_id == "BARC") |> 
+  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  geom_point(aes(y = observation)) +
+  facet_wrap(~depth) +
+  labs(y = "temperature") +
+  theme_bw()
+```
+:::

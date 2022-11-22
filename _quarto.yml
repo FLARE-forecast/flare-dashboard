@@ -13,13 +13,15 @@ website:
     search: true
     left:
       - href: fcre.qmd
-        icon: tree-fill
+        icon: droplet
       - href: bvre.qmd
-        icon: tree-fill
+        icon: droplet
       - href: sunp.qmd
-        icon: tree-fill
+        icon: droplet
       - href: alex.qmd
-        icon: tree-fill
+        icon: droplet
+      - href: neon.qmd
+        icon: droplet
   page-footer:
     left: "CC-BY"
     right:
