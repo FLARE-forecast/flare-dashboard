@@ -59,6 +59,7 @@ df_insitu_scores |>
   geom_line(aes(y = mean)) +
   geom_point(aes(y = observation)) +
   facet_wrap(~depth) +
+  geom_vline(xintercept = Sys.time()) +
   labs(y = "temperature") +
   theme_bw()
 ```
