@@ -31,15 +31,11 @@ most_recent <-  arrow::open_dataset(s3) |>
   collect() |> 
   summarize(max = max(reference_datetime)) 
 
-most_recent <-  arrow::open_dataset(s3) |> 
-  filter(site_id == "fcre") |> 
-  
-
 df_insitu_scores <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          depth %in% c(1.0, 8.0),
          site_id == "fcre",
-         reference_datetime == full_forecast) #most_recent$max) |> 
+         reference_datetime == most_recent$max) |> 
  dplyr::collect()
 
 ```
