@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Welcome the FLARE Dashboard.\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "neon.html#most-recent-forecasts",
     "href": "neon.html#most-recent-forecasts",
-    "title": "NEON Lakes",
+    "title": "National Ecological Observatory Network",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 08:27:21\nThe most recent forecast is from 2022-11-22 19:00:00.\n\nBARCOTHER EXAMPLE LAKE"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 16:48:05\nThe most recent forecast is from 2022-11-22 19:00:00.\n\nBARCOTHER EXAMPLE LAKE"
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
@@ -23,16 +23,16 @@
   {
     "objectID": "alex.html#most-recent-forecasts",
     "href": "alex.html#most-recent-forecasts",
-    "title": "Lake Alexandrina",
+    "title": "University of Western Australia",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 08:27:45\nThe most recent forecast is from 2022-11-22 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 16:52:48\nThe most recent forecast is from 2022-11-22 19:00:00.\n\nLake Alexandrina\n\n\n\n\n\n\n\nPast Performance"
   },
   {
     "objectID": "fcre.html#most-recent-forecasts",
     "href": "fcre.html#most-recent-forecasts",
-    "title": "Falling Creek Reservoir",
+    "title": "Western Virginia Water Authority",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 08:28:17 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-22 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 16:47:14 (Eastern U.S. time).\nThe most recent forecast is from 2022-11-22 19:00:00 (Eastern U.S. time).\n\nFalling Creek ReservoirBeaver Dam Reservoir\n\n\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts"
   },
   {
     "objectID": "about.html",
@@ -51,9 +51,9 @@
   {
     "objectID": "sunp.html#most-recent-forecasts",
     "href": "sunp.html#most-recent-forecasts",
-    "title": "Lake Sunapee",
+    "title": "Lake Sunapee Protective Association",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 08:29:14.\nThe most recent forecast is from 2022-11-22 19:00:00."
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-23 16:51:53.\nThe most recent forecast is from 2022-11-22 19:00:00.\n\nLake Sunapee"
   },
   {
     "objectID": "noaa.html",

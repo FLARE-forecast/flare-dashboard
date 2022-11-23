@@ -1,5 +1,5 @@
 ---
-title: "Lake Sunapee"
+title: "Lake Sunapee Protective Association"
 ---
 
 ```{r, include=FALSE}
@@ -46,6 +46,9 @@ This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
 
+::: panel-tabset
+## Lake Sunapee
+
 ```{r}
 ## date of each team's most recent forecast
 df_insitu_scores |> 
@@ -76,3 +79,4 @@ df_horizon |>
 
 
 ```
+:::

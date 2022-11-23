@@ -13,6 +13,6 @@
 { "type": "Feature", "properties": { "site_id": "Prairie Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -99.11388, 47.15909 ] } },
 { "type": "Feature", "properties": { "site_id": "Prairie Pothole","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -99.25055, 47.12999 ] } },
 { "type": "Feature", "properties": { "site_id": "Suggs Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -82.01617, 29.68705] } },
- { "type": "Feature", "properties": { "site_id": "Lake Alexandrina","Partner": "AED Group", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ 139.168997, -35.436808] } }
+ { "type": "Feature", "properties": { "site_id": "Lake Alexandrina","Partner": "UWA", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ 139.168997, -35.436808] } }
 ]
 }

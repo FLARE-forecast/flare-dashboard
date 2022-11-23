@@ -1,5 +1,5 @@
 ---
-title: "Falling Creek Reservoir"
+title: "Western Virginia Water Authority"
 ---
 
 ```{r, include=FALSE}
@@ -22,6 +22,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ```
 
+
 ```{r include=FALSE}
 s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -30,14 +31,6 @@ most_recent <-  arrow::open_dataset(s3) |>
   distinct(reference_datetime) |>
   collect() |> 
   summarize(max = max(reference_datetime)) 
-
-df_insitu_scores <- arrow::open_dataset(s3) |> 
-  filter(variable == "temperature",
-         depth %in% c(1.0, 8.0),
-         site_id == "fcre",
-         reference_datetime == most_recent$max) |> 
- dplyr::collect()
-
 ```
 
 ## Most recent forecasts
@@ -46,7 +39,18 @@ This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent$max), tzone = "America/New_York")` (Eastern U.S. time).
 
+::: panel-tabset
+## Falling Creek Reservoir
+
 ```{r}
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(1.0, 8.0),
+         site_id == "fcre",
+         reference_datetime == most_recent$max) |> 
+ dplyr::collect()
+
 ## date of each team's most recent forecast
 df_insitu_scores |> 
   dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York")) |> 
@@ -181,3 +185,53 @@ df2 |>
   theme_bw()
 
 ```
+
+## Beaver Dam Reservoir
+
+```{r}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id == "bvre") |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(1.0, 8.0),
+         site_id == "bvre",
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+df_insitu_scores |> 
+  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  geom_point(aes(y = observation)) +
+  facet_wrap(~depth) +
+  labs(y = "temperature") +
+  theme_bw()
+```
+
+```{r}
+df <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(1.0),
+         site_id == "bvre") |> 
+  dplyr::collect() 
+
+bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
+  
+  df |> 
+  filter(horizon > 0) |> 
+  ggplot(aes(x = observation, y = mean, color = factor(horizon))) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0) +
+  ylim(bounds) +
+  xlim(bounds) +
+  labs(x = "observed", y = "predicted") +
+  theme_bw()
+```
+:::
