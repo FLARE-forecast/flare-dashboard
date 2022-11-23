@@ -44,10 +44,10 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 
 This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
 
-The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
-
 ::: panel-tabset
-## BARC
+## Barco Lake
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
 
 ```{r}
 ## date of each team's most recent forecast
@@ -64,19 +64,44 @@ df_insitu_scores |>
   theme_bw()
 ```
 
-## OTHER EXAMPLE LAKE
+## Crampton Lake
+
+Pending
 
 ```{r}
-## date of each team's most recent forecast
-df_insitu_scores |> 
-  dplyr::filter(site_id == "BARC") |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  geom_point(aes(y = observation)) +
-  facet_wrap(~depth) +
-  labs(y = "temperature") +
-  theme_bw()
+
 ```
+
+## Little Rock Lake
+
+Pending
+
+```{r}
+
+```
+
+## Prairie Lake
+
+Pending
+
+```{r}
+
+```
+
+## Prairie Pothole
+
+Pending
+
+```{r}
+
+```
+
+## Suggs Lake
+
+Pending
+
+```{r}
+
+```
+
 :::
