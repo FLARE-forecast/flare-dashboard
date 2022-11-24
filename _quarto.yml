@@ -20,6 +20,7 @@ website:
         icon: droplet
       - href: neon.qmd
         icon: droplet
+
   page-footer:
     left: "CC-BY"
     right:
@@ -31,7 +32,7 @@ format:
     theme: [yeti, custom.scss]
     css: styles.css
     title-block-style: default
-    title-block-banner: "img/carvins_wide.png"
+    title-block-banner: "img/carvins_justwater.png"
 #    title-block-banner-color: white
     page-layout: full
     toc: true
