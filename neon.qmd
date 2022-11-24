@@ -22,7 +22,15 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ```
 
-```{r include=FALSE}
+## Most recent forecasts
+
+Text about NEON
+
+::: panel-tabset
+
+## Barco Lake
+
+```{r}
 s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
 most_recent <-  arrow::open_dataset(s3) |> 
@@ -37,15 +45,7 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
          site_id %in% c("BARC"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
-
 ```
-
-## Most recent forecasts
-
-This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
-
-::: panel-tabset
-## Barco Lake
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
 

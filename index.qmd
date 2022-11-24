@@ -2,7 +2,9 @@
 title: "Home"
 ---
 
-Welcome the FLARE Dashboard.
+Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!
+
+This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
 
 This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using [quarto](https://quarto.org) and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.
 
