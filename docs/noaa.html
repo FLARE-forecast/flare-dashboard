@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FLARE - University of Western Australia</title>
+<title>FLARE - Weather</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,7 +85,7 @@ background-size: cover;
     <a class="nav-link" href="./sunp.html">Lake Sunapee Protective Association</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./alex.html" aria-current="page">University of Western Australia</a>
+    <a class="nav-link" href="./alex.html">University of Western Australia</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./neon.html">National Ecological Observatory Network</a>
@@ -100,7 +100,7 @@ background-size: cover;
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-page-left">
-      <h1 class="title">University of Western Australia</h1>
+      <h1 class="title">Weather</h1>
                       </div>
   </div>
     
@@ -121,8 +121,11 @@ background-size: cover;
    
   <ul>
   <li><a href="#most-recent-forecasts" id="toc-most-recent-forecasts" class="nav-link active" data-scroll-target="#most-recent-forecasts">Most recent forecasts</a></li>
+  <li><a href="#relative-humidity" id="toc-relative-humidity" class="nav-link" data-scroll-target="#relative-humidity">Relative Humidity</a></li>
+  <li><a href="#skill-scores-over-time" id="toc-skill-scores-over-time" class="nav-link" data-scroll-target="#skill-scores-over-time">Skill Scores over time</a></li>
+  <li><a href="#average-skill-by-start-date" id="toc-average-skill-by-start-date" class="nav-link" data-scroll-target="#average-skill-by-start-date">Average skill by start date</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rqthomas/flare-dashboard/edit/main/alex.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rqthomas/flare-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/rqthomas/flare-dashboard/edit/main/noaa.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/rqthomas/flare-dashboard/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
@@ -130,37 +133,73 @@ background-size: cover;
 
 
 
+<p>As a reference case, we can compare the NOAA <a href="https://www.ncei.noaa.gov/products/weather-climate-models/global-ensemble-forecast">Global Ensemble Forecast System (GEFS)</a> predictions to measurements made on the ground at individual NEON sites using the EFI standard and cyberinfrastructure tools. Keep in mind these are not the usual NOAA forecasts you see in daily life, GEFS are: 31 ensemble models at 1.0 degree lat/long squares resolution that extend a full 30 days in the future. We sample these at the NEON sites and compare to NEON measurements.</p>
+<div class="cell">
+
+</div>
 <div class="cell">
 
 </div>
 <section id="most-recent-forecasts" class="level2">
 <h2 class="anchored" data-anchor-id="most-recent-forecasts">Most recent forecasts</h2>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Lake Alexandrina</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-fig.showtext="false">
+<p>Below is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom.</p>
+<div class="cell">
 
 </div>
-<p>The most recent forecast is from 2022-11-23 19:00:00.</p>
-<div class="cell" data-fig.showtext="false">
-<div class="cell-output-display">
-<p><img src="alex_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</section>
+<section id="relative-humidity" class="level2">
+<h2 class="anchored" data-anchor-id="relative-humidity">Relative Humidity</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Sites 1 - 8</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">9 - 16</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">17 - 24</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">25 - 32</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">33 - 40</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">41 - 47</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">48 - 56</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+
 </div>
 </div>
-<p>Past Performance</p>
-<div class="cell" data-fig.showtext="false">
-<div class="cell-output-display">
-<p><img src="alex_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+
 </div>
 </div>
-<div class="cell" data-fig.showtext="false">
-<div class="cell-output-display">
-<p><img src="alex_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+
+</div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="cell">
+
 </div>
 </div>
 </div>
 </div>
+</section>
+<section id="skill-scores-over-time" class="level2">
+<h2 class="anchored" data-anchor-id="skill-scores-over-time">Skill Scores over time</h2>
+<div class="cell">
+
+</div>
+</section>
+<section id="average-skill-by-start-date" class="level2">
+<h2 class="anchored" data-anchor-id="average-skill-by-start-date">Average skill by start date</h2>
+<div class="cell">
+
 </div>
 
 
