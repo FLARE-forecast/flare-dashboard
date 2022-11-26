@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.577">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -33,7 +38,7 @@ ul.task-list{list-style: none;}
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,25 +86,35 @@ background-size: cover;
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">FLARE</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./fcre.html">Western Virginia Water Authority</a>
+    <a class="nav-link" href="./fcre.html"><i class="bi bi-droplet" role="img">
+</i> 
+ <span class="menu-text">Western Virginia Water Authority</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./sunp.html">Lake Sunapee Protective Association</a>
+    <a class="nav-link" href="./sunp.html"><i class="bi bi-droplet" role="img">
+</i> 
+ <span class="menu-text">Lake Sunapee Protective Association</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./alex.html">University of Western Australia</a>
+    <a class="nav-link" href="./alex.html"><i class="bi bi-droplet" role="img">
+</i> 
+ <span class="menu-text">University of Western Australia</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./neon.html">National Ecological Observatory Network</a>
+    <a class="nav-link" href="./neon.html"><i class="bi bi-droplet" role="img">
+</i> 
+ <span class="menu-text">National Ecological Observatory Network</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -119,6 +134,7 @@ background-size: cover;
   <div class="quarto-title-meta">
 
       
+    
       
     </div>
     
@@ -127,7 +143,7 @@ background-size: cover;
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
@@ -142,15 +158,15 @@ background-size: cover;
 
 
 <p>Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!</p>
-<p>This page was last updated on 2022-11-25 13:37:17</p>
+<p>This page was last updated on 2022-11-25 19:15:17</p>
 <p>This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using <a href="https://quarto.org">quarto</a> and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.</p>
 <section id="flare-sites" class="level3">
 <h3 class="anchored" data-anchor-id="flare-sites">FLARE sites</h3>
 <div class="cell" data-fig.showtext="false">
 <div class="cell-output-display">
 
-<div id="htmlwidget-d1db78101d2690838c78" style="width:100%;height:650px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d1db78101d2690838c78">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircles","args":[[40.2584316312973,38.5973282538664,42.6635425505129,37.183249619768,31.5396227165333,45.5658706738354,45.2604315072343,46.3479443082492,46.7463895743708,30.0611815299816,-36.3508714907521],[-82.4499038507718,-78.8646260036149,-71.5502314429611,-78.9144856896926,-83.164885727096,-89.5892466763572,-87.9614840133109,-99.0339423740632,-99.2960756147252,-82.77180774268,136.721548975628],[206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362],["Falling.Creek","Beaver.Dam","Lake.Sunapee","Carvins.Cove.Reservoir","Barco.Lake","Crampton.Lake","Little.Rock.Lake","Prairie.Lake","Prairie.Pothole","Suggs.Lake","Lake.Alexandrina"],"neon",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#FB8072","#FB8072","#8DD3C7","#FB8072","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#BEBADA"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1,1]},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Falling Creek<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Falling Creek<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Beaver Dam<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Beaver Dam<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Sunapee<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Sunapee<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Carvins Cove Reservoir<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Carvins Cove Reservoir<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Barco Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Barco Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Crampton Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Crampton Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Little Rock Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Little Rock Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Pothole<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Pothole<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Suggs Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Suggs Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Alexandrina<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Alexandrina<\/nobr><\/td><\/tr><\/table><\/div>"],null,["Falling Creek","Beaver Dam","Lake Sunapee","Carvins Cove Reservoir","Barco Lake","Crampton Lake","Little Rock Lake","Prairie Lake","Prairie Pothole","Suggs Lake","Lake Alexandrina"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLegend","args":[{"colors":["#8DD3C7","#FFFFB3","#BEBADA","#FB8072"],"labels":["LSPA","NEON","UWA","WVWA"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"unknown","title":"Partner","extra":null,"layerId":"legend401","className":"info legend neon","group":"neon"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"neon",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[-36.3508714907521,46.7463895743708],"lng":[-99.2960756147252,136.721548975628]},"fitBounds":[-35.436808,-74,48,139.168997,[]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-18a6271c204e8d94df81" style="width:100%;height:650px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-18a6271c204e8d94df81">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircles","args":[[35.5787998471049,35.8800588228898,43.7259448388891,36.7976026824694,28.9666158731738,46.6485260798546,47.2323565650615,44.2887747876111,47.7370188041779,28.9300657128515,-35.2709196555589],[-80.2506428788827,-78.0236649346004,-72.095610540551,-80.8325110696807,-84.1735595297784,-87.2907407919968,-89.8458177638553,-101.198766830635,-101.136417160771,-79.7379423270958,138.963911761825],[206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362,206172.540166362],["Falling.Creek","Beaver.Dam","Lake.Sunapee","Carvins.Cove.Reservoir","Barco.Lake","Crampton.Lake","Little.Rock.Lake","Prairie.Lake","Prairie.Pothole","Suggs.Lake","Lake.Alexandrina"],"neon",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#FB8072","#FB8072","#8DD3C7","#FB8072","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#FFFFB3","#BEBADA"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1,1]},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Falling Creek<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Falling Creek<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Beaver Dam<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Beaver Dam<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Sunapee<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Sunapee<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Carvins Cove Reservoir<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Carvins Cove Reservoir<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Barco Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Barco Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Crampton Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Crampton Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Little Rock Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Little Rock Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Prairie Pothole<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Prairie Pothole<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Suggs Lake<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Suggs Lake<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>Lake Alexandrina<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>site_id<\/nobr><\/td><td align=\"right\"><nobr>Lake Alexandrina<\/nobr><\/td><\/tr><\/table><\/div>"],null,["Falling Creek","Beaver Dam","Lake Sunapee","Carvins Cove Reservoir","Barco Lake","Crampton Lake","Little Rock Lake","Prairie Lake","Prairie Pothole","Suggs Lake","Lake Alexandrina"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addLegend","args":[{"colors":["#8DD3C7","#FFFFB3","#BEBADA","#FB8072"],"labels":["LSPA","NEON","UWA","WVWA"],"na_color":null,"na_label":"NA","opacity":1,"position":"topright","type":"unknown","title":"Partner","extra":null,"layerId":"legend401","className":"info legend neon","group":"neon"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"neon",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[-35.2709196555589,47.7370188041779],"lng":[-101.198766830635,138.963911761825]},"fitBounds":[-35.436808,-74,48,139.168997,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.</p>
@@ -161,6 +177,24 @@ background-size: cover;
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -182,7 +216,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -210,31 +261,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

@@ -1,17 +1,45 @@
 [
   {
-    "objectID": "sunp.html#most-recent-forecasts",
-    "href": "sunp.html#most-recent-forecasts",
-    "title": "Lake Sunapee Protective Association",
+    "objectID": "neon.html#most-recent-forecasts",
+    "href": "neon.html#most-recent-forecasts",
+    "title": "National Ecological Observatory Network",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nText about LSPA and Lake Sunapee\n\nLake Sunapee\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00."
+    "text": "Most recent forecasts\nText about NEON\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs Lake\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending"
+  },
+  {
+    "objectID": "alex.html#most-recent-forecasts",
+    "href": "alex.html#most-recent-forecasts",
+    "title": "University of Western Australia",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\n\nLake Alexandrina\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\nPast Performance"
+  },
+  {
+    "objectID": "fcre.html#most-recent-forecasts",
+    "href": "fcre.html#most-recent-forecasts",
+    "title": "Western Virginia Water Authority",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nPending"
   },
   {
     "objectID": "bvre.html#most-recent-forecasts",
     "href": "bvre.html#most-recent-forecasts",
     "title": "Beaver Dam Reservoir",
     "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nThis page was last updated on 2022-11-25 13:37:11\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Most recent forecasts\nThis page was last updated on 2022-11-25 19:14:57\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\nPast Performance"
+  },
+  {
+    "objectID": "aquatics.html#most-recent-forecasts",
+    "href": "aquatics.html#most-recent-forecasts",
+    "title": "Falling Creek Reservior",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nBelow is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "noaa.html",
@@ -49,45 +77,17 @@
     "text": "Average skill by start date"
   },
   {
+    "objectID": "sunp.html#most-recent-forecasts",
+    "href": "sunp.html#most-recent-forecasts",
+    "title": "Lake Sunapee Protective Association",
+    "section": "Most recent forecasts",
+    "text": "Most recent forecasts\nText about LSPA and Lake Sunapee\n\nLake Sunapee\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This page was last updated on 2022-11-25 13:37:17\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "aquatics.html#most-recent-forecasts",
-    "href": "aquatics.html#most-recent-forecasts",
-    "title": "Falling Creek Reservior",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nBelow is the latest forecasts for which we have at least 15 observations. Mouse over to see the team id, scroll to zoom."
-  },
-  {
-    "objectID": "neon.html#most-recent-forecasts",
-    "href": "neon.html#most-recent-forecasts",
-    "title": "National Ecological Observatory Network",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\nText about NEON\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs Lake\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending\n\n\n\n\n\nPending"
-  },
-  {
-    "objectID": "fcre.html#most-recent-forecasts",
-    "href": "fcre.html#most-recent-forecasts",
-    "title": "Western Virginia Water Authority",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00 (Eastern U.S. time).\n\n\n\n\n\nPast Performance\n\n\n\n\n\nCompare forecasts\n\n\n\n\n\n\nAnalyze weather, inflow, and lake forecasts\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nPending"
-  },
-  {
-    "objectID": "alex.html#most-recent-forecasts",
-    "href": "alex.html#most-recent-forecasts",
-    "title": "University of Western Australia",
-    "section": "Most recent forecasts",
-    "text": "Most recent forecasts\n\nLake Alexandrina\n\n\n\n\n\nThe most recent forecast is from 2022-11-23 19:00:00.\n\n\n\n\n\nPast Performance"
+    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2022-11-25 19:15:17\nThis site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using quarto and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.\n\nFLARE sites\n\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   }
 ]
