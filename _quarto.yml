@@ -12,6 +12,9 @@ website:
     background: primary
     search: true
     left:
+      - href: https://flare-forecast.org
+        text: About
+        icon: cpu
       - href: fcre.qmd
         icon: droplet
       - href: sunp.qmd

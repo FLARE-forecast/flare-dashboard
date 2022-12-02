@@ -60,7 +60,7 @@ my_label <- seq(lubridate::as_datetime(df_insitu_scores$reference_datetime)[1], 
 my_labels <- as.character(my_breaks)
 my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
 df_insitu_scores |> 
   dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
                 reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
@@ -235,7 +235,7 @@ my_label <- seq(lubridate::as_datetime(df_insitu_scores$reference_datetime)[1], 
 my_labels <- as.character(my_breaks)
 my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
 df_insitu_scores |> 
   dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
                 reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
