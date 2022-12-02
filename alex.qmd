@@ -24,6 +24,8 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ## Most recent forecasts
 
+Lake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water).  The forecasts are generated in collaboration with Matt Hipsey's research group at the University of Western Australia. 
+
 ::: panel-tabset
 ## Lake Alexandrina
 
@@ -50,20 +52,34 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 ## date of each team's most recent forecast
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores$datetime), max(df_insitu_scores$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores$reference_datetime)[1], max(df_insitu_scores$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
 df_insitu_scores |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
   geom_point(aes(y = observation)) +
+  geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   facet_wrap(~depth) +
-  labs(y = "temperature") +
-  theme_bw()
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
-Past Performance
 
-```{r}
+
+```{r eval = FALSE}
+#Past Performance
 df <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          depth %in% c(0.5),
@@ -84,7 +100,7 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
 
 ```
 
-```{r}
+```{r eval = FALSE}
 noaa_date <- as.character(lubridate::as_date("2022-11-20"))
 s3 <- arrow::s3_bucket(bucket = "drivers/noaa/gefs-v12/stage2/parquet/0", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 noaa_df <- arrow::open_dataset(s3, partitioning = "reference_date") |> 

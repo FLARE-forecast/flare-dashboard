@@ -24,7 +24,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ## Most recent forecasts
 
-Text about LSPA and Lake Sunapee
+Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire.  The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association. 
 
 ::: panel-tabset
 ## Lake Sunapee
@@ -50,15 +50,28 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 ## date of each team's most recent forecast
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores$datetime), max(df_insitu_scores$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores$reference_datetime)[1], max(df_insitu_scores$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
 df_insitu_scores |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
   geom_point(aes(y = observation)) +
+  geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   facet_wrap(~depth) +
-  labs(y = "temperature") +
-  theme_bw()
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ```{r eval = FALSE}

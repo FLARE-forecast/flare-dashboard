@@ -24,7 +24,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ## Most recent forecasts
 
-Text about NEON
+The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years.  We generate forecast for the seven lakes that are monitored by NEON.  These lakes range from hot humid (Florida) to cold tundra (Alaska).
 
 ::: panel-tabset
 
@@ -51,17 +51,31 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 ## date of each team's most recent forecast
-df_insitu_scores |> 
-  dplyr::filter(site_id == "BARC") |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "BARC")
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
   geom_point(aes(y = observation)) +
+  geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   facet_wrap(~depth) +
-  geom_vline(xintercept = Sys.time()) +
-  labs(y = "temperature") +
-  theme_bw()
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ## Crampton Lake
@@ -120,17 +134,30 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 ## date of each team's most recent forecast
-df_insitu_scores |> 
-  dplyr::filter(site_id == "SUGG") |> 
-  mutate(datetime = lubridate::with_tz(datetime, "America/New_York")) |> 
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "SUGG")
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temprature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
   geom_point(aes(y = observation)) +
+  geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   facet_wrap(~depth) +
-  geom_vline(xintercept = Sys.time()) +
-  labs(y = "temperature") +
-  theme_bw()
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))
 ```
 
 :::
