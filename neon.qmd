@@ -24,7 +24,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 
 ## Most recent forecasts
 
-The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years.  We generate forecast for the seven lakes that are monitored by NEON.  These lakes range from hot humid (Florida) to cold tundra (Alaska).
+The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years.  We generate forecast for the seven lakes that are monitored by NEON.  These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.
 
 ::: panel-tabset
 
@@ -47,7 +47,7 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
   dplyr::collect()
 ```
 
-The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`.
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`  (Eastern U.S. time).
 
 ```{r}
 ## date of each team's most recent forecast
