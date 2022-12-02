@@ -6,7 +6,7 @@ Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!
 
 This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
 
-This site provides daily updates to visualize recent forecasts generated across the U.S.. This site is generated using [quarto](https://quarto.org) and should be simple to customize for users familiar with RMarkdown. It is rendered daily using GitHub Actions.
+This dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE systems that iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.
 
 ### FLARE sites
 
@@ -71,5 +71,6 @@ neon  |>
   tm_shape(bbox=c(139.168997,-35.436808,-74,48)) + 
   tm_bubbles(col="Partner", popup.vars = c("site_id"), jitter =TRUE) 
 ```
+
 
 This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
