@@ -60,11 +60,12 @@ df_insitu_scores |>
   dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
                 reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
                 depth = paste0("Depth: ", depth)) |> 
+  dplyr::filter(datetime >= reference_datetime) |> 
   ggplot(aes(x = datetime)) +
   geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
   geom_line(aes(y = mean)) +
-  geom_point(aes(y = observation)) +
-  geom_vline(aes(xintercept = reference_datetime)) +
+  #geom_point(aes(y = observation)) +
+  #geom_vline(aes(xintercept = reference_datetime)) +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   facet_wrap(~depth) +
   labs(y = y_label) +
