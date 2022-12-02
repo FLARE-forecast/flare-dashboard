@@ -6,7 +6,7 @@ Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!
 
 This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")`
 
-This dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE systems that iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.
+This dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.
 
 ### FLARE sites
 
