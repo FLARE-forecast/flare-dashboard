@@ -81,34 +81,206 @@ df_insitu_scores_lake |>
 
 ## Crampton Lake
 
-Pending
+```{r}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id %in% c("CRAM")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(0.5),
+         site_id %in% c("CRAM"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`  (Eastern U.S. time).
 
 ```{r}
+## date of each team's most recent forecast
 
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "CRAM") 
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
+  dplyr::filter(datetime >= reference_datetime) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  #geom_point(aes(y = observation)) +
+  #geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+  facet_wrap(~depth) +
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ## Little Rock Lake
 
-Pending
+```{r}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id %in% c("LIRO")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(0.5),
+         site_id %in% c("LIRO"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`  (Eastern U.S. time).
 
 ```{r}
+## date of each team's most recent forecast
 
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "LIRO")
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
+  dplyr::filter(datetime >= reference_datetime) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  #geom_point(aes(y = observation)) +
+  #geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+  facet_wrap(~depth) +
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ## Prairie Lake
 
-Pending
+```{r}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id %in% c("PRLA")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(0.5),
+         site_id %in% c("PRLA"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`  (Eastern U.S. time).
 
 ```{r}
+## date of each team's most recent forecast
 
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "PRLA")
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
+  dplyr::filter(datetime >= reference_datetime) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  #geom_point(aes(y = observation)) +
+  #geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+  facet_wrap(~depth) +
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ## Prairie Pothole
 
-Pending
+```{r}
+s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+most_recent <-  arrow::open_dataset(s3) |> 
+  filter(site_id %in% c("PRPO")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3) |> 
+  filter(variable == "temperature",
+         depth %in% c(0.5),
+         site_id %in% c("PRPO"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")`  (Eastern U.S. time).
 
 ```{r}
+## date of each team's most recent forecast
 
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "PRPO")
+my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
+my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
+my_labels <- as.character(my_breaks)
+my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
+df_insitu_scores_lake |> 
+  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                depth = paste0("Depth: ", depth)) |> 
+  dplyr::filter(datetime >= reference_datetime) |> 
+  ggplot(aes(x = datetime)) +
+  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+  geom_line(aes(y = mean)) +
+  #geom_point(aes(y = observation)) +
+  #geom_vline(aes(xintercept = reference_datetime)) +
+  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+  facet_wrap(~depth) +
+  labs(y = y_label) +
+  ylim(c(-5,35)) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+  theme(text = element_text(size = 20))  
 ```
 
 ## Suggs Lake
