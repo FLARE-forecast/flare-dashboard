@@ -206,14 +206,14 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
 ```
-
+*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ## Little Rock Lake
 
 ```{r}
@@ -314,14 +314,14 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
 ```
-
+*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon. 
 ## Prairie Lake
 
 ```{r}
@@ -422,14 +422,14 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
 ```
-
+*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ## Prairie Pothole
 
 ```{r}
@@ -530,14 +530,14 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
 ```
-
+*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ## Suggs Lake
 
 ```{r}
