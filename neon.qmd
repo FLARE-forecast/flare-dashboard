@@ -77,6 +77,9 @@ df_insitu_scores_lake |>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20))  
 
+```
+
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -102,7 +105,9 @@ depth_scores %>%
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
+```
 
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -121,13 +126,12 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
-
 ```
 
 ## Crampton Lake
@@ -179,7 +183,9 @@ df_insitu_scores_lake |>
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20))  
+```
 
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -206,6 +212,9 @@ depth_scores %>%
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
 
+```
+
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -224,7 +233,7 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
@@ -282,7 +291,9 @@ df_insitu_scores_lake |>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20))  
 
+```
 
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -309,6 +320,9 @@ depth_scores %>%
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
 
+```
+
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -327,7 +341,7 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
@@ -384,6 +398,10 @@ df_insitu_scores_lake |>
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20)) 
+
+```
+
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -410,6 +428,9 @@ depth_scores %>%
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
 
+```
+
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -428,7 +449,7 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
@@ -486,6 +507,9 @@ df_insitu_scores_lake |>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20))  
 
+```
+
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -512,6 +536,9 @@ depth_scores %>%
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
 
+```
+
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -530,7 +557,7 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
@@ -586,7 +613,9 @@ df_insitu_scores_lake |>
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20))
+```
 
+```{r}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3) |> 
@@ -613,6 +642,10 @@ depth_scores %>%
   theme(text = element_text(size = 20),
         panel.grid.minor = element_blank())  
 
+
+```
+
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -631,7 +664,7 @@ ice_forecasts %>%
   geom_line() +
   scale_x_continuous(breaks = my_breaks, labels = my_labels) +
   scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon') +
+  labs(y = '% chance of ice*', caption = '*Percent chance indicates the proportion of ensemble members\nthat predict ice at each forecast horizon') +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
   theme(text = element_text(size = 20), 
