@@ -187,7 +187,7 @@ depth_scores %>%
 
 ```
 
-```{r}
+```{r eval = FALSE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -212,8 +212,9 @@ ice_forecasts %>%
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
+#Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
-*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
+
 ## Little Rock Lake
 
 ```{r}
@@ -295,7 +296,7 @@ depth_scores %>%
 
 ```
 
-```{r}
+```{r eval = FALSE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -320,8 +321,12 @@ ice_forecasts %>%
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
+
+#Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon. 
 ```
-*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon. 
+
+
+
 ## Prairie Lake
 
 ```{r}
@@ -403,7 +408,7 @@ depth_scores %>%
 
 ```
 
-```{r}
+```{r eval = FALSE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -428,8 +433,11 @@ ice_forecasts %>%
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
+#Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
-*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
+
+
+
 ## Prairie Pothole
 
 ```{r}
@@ -511,7 +519,7 @@ depth_scores %>%
 
 ```
 
-```{r}
+```{r eval = FALSE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -536,8 +544,10 @@ ice_forecasts %>%
   theme(text = element_text(size = 20), 
         plot.caption = element_text(size = 12),
         panel.grid.minor = element_blank())
+#Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
-*Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
+
+
 ## Suggs Lake
 
 ```{r}
