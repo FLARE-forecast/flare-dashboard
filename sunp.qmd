@@ -71,7 +71,7 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
 ```
 
-```{r sunp-error eval = FALSE}
+```{r sunp-error, eval = FALSE}
 df_horizon <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          site_id == "sunp",
@@ -89,7 +89,7 @@ df_horizon |>
 
 ```
 
-```{r sunp-depth eval=F}
+```{r sunp-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",

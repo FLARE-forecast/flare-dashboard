@@ -51,7 +51,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   dplyr::collect()
 ```
 
-The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent$max), tzone = "America/New_York")` (Eastern U.S. time).
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r fcre-temp}
 df_insitu_scores_lake <- df_insitu_scores |> 
@@ -60,7 +60,7 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
 ```
 
-```{r fcre-depth eval=F}
+```{r fcre-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
@@ -237,7 +237,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   dplyr::collect()
 ```
 
-The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent$max), tzone = "America/New_York")` (Eastern U.S. time).
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
 
@@ -248,7 +248,7 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 ```
 
 
-```{r bvre-depth eval=F}
+```{r bvre-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",

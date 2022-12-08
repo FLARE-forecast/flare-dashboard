@@ -57,7 +57,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r barc-depth eval=F}
+```{r barc-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
@@ -112,7 +112,7 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```
 
-```{r cram-depth eval = F}
+```{r cram-depth, eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -194,7 +194,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r liro-depth eval= F}
+```{r liro-depth, eval= F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -207,7 +207,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r liro-ice eval = TRUE}
+```{r liro-ice, eval = TRUE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -249,7 +249,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r prla-depth eval = F}
+```{r prla-depth, eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -275,7 +275,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r prla-ice eval = TRUE}
+```{r prla-ice, eval = TRUE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -319,7 +319,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r, eval = F}
+```{r prpo-depth, eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
