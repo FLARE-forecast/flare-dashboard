@@ -2,7 +2,7 @@
 
 # Plot the temperature forecast
 # depths - what depths to facet
-plot_temp <- function(score_df, depths) {
+plot_temp <- function(score_df, depths = 0.5) {
 
   # Generate labels for plots
   my_breaks <- lubridate::with_tz(seq(min(score_df$datetime), max(score_df$datetime), by = "1 day"),"America/New_York")
@@ -80,7 +80,7 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
 
 
   # which depths should be evaluated to determine mixing
-  if (eval_depths == 'min/max' | eval_depths == 'max/min') {
+  if (!is.numeric(eval_depths)) {
     # extracts the maximum and minimum in the forecast
     max_depth <- max(forecast_df$depth, na.rm = T)
     min_depth <- min(forecast_df$depth, na.rm = T)
