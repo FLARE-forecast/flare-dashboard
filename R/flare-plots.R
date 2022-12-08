@@ -1,0 +1,187 @@
+# Script of functions for different plots
+
+# Plot the temperature forecast
+# depths - what depths to facet
+plot_temp <- function(score_df, depths) {
+
+  # Generate labels for plots
+  my_breaks <- lubridate::with_tz(seq(min(score_df$datetime), max(score_df$datetime), by = "1 day"),"America/New_York")
+  my_label <- seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days")
+  my_labels <- as.character(my_breaks)
+  my_labels[which(!(my_breaks %in% my_label))] <- " "
+  y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
+
+  # Generate the pot
+  score_df |>
+    # Filter the score_df and get in the right format
+    dplyr::filter(depth %in% depths) |>
+    dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                  reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
+                  depth = paste0("Depth: ", depth)) |>
+    dplyr::filter(datetime >= reference_datetime) |>
+
+    ggplot(aes(x = datetime)) +
+    geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
+    geom_line(aes(y = mean)) +
+    scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+    facet_wrap(~depth) +
+    labs(y = y_label) +
+    ylim(c(-5,35)) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+    theme(text = element_text(size = 20))
+}
+
+
+
+plot_depth <- function(score_df) {
+  # Generate labels for plots
+  my_breaks <- lubridate::with_tz(seq(min(score_df$datetime), max(score_df$datetime), by = "1 day"),"America/New_York")
+  my_label <- seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days")
+  my_labels <- as.character(my_breaks)
+  my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+
+  # limits for axes
+  depth_change <- ceiling((max(score_df$mean) - min(score_df$mean))*2)/2
+  max_depth <- ceiling(max(score_df$mean)*2)/2
+
+  # Generate plot
+  score_df %>%
+    # Filter the dataframe and get in right format
+    dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
+                  reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>%
+    dplyr::filter(datetime >= reference_datetime) |>
+
+    ggplot(aes(x=datetime))+
+    geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
+    geom_line(aes( y=mean)) +
+    scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+    scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
+    labs(y = 'Lake depth (m)') +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+    theme(text = element_text(size = 20),
+          panel.grid.minor = element_blank())
+}
+
+# Plot the % chance of being mixed - needs ensemble forecast
+  # eval_depths = depths used to determine mixing, either max min or specific depths
+  # use_density = use a density difference to determine mixing? T/F
+  # threshold = the density or temperature difference used to determine mixing
+
+plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE, threshold = 0.1) {
+
+  # Labels for plot
+  my_breaks <- lubridate::with_tz(seq(min(forecast_df$datetime), max(forecast_df$datetime), by = "1 day"),"America/New_York")
+  my_label <- seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days")
+  my_labels <- as.character(my_breaks)
+  my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+
+  # which depths should be evaluated to determine mixing
+  if (eval_depths == 'min/max' | eval_depths == 'max/min') {
+    # extracts the maximum and minimum in the forecast
+    max_depth <- max(forecast_df$depth, na.rm = T)
+    min_depth <- min(forecast_df$depth, na.rm = T)
+  } else {
+    # or uses the user specified values
+    max_depth <- max(eval_depths)
+    min_depth <- min(eval_depths)
+  }
+
+  # if use_density is false uses a temperature difference
+  if (use_density == FALSE) {
+    message(paste0('using a ', threshold, ' C temperature difference to define mixing'))
+    temp_forecast <- forecast_df |>
+      filter(depth %in% c(max_depth, min_depth),
+             datetime >= reference_datetime) |>
+      pivot_wider(names_from = depth, names_prefix = 'wtr_', values_from = prediction)
+
+    colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', min_depth))] <- 'min_depth'
+    colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', max_depth))] <- 'max_depth'
+
+    temp_forecast |>
+      mutate(mixed = ifelse((min_depth - max_depth) < threshold,
+                            1, 0)) |>
+      group_by(datetime) |>
+      summarise(percent_mix = 100*(sum(mixed)/n())) |>
+      ggplot(aes(datetime, y=percent_mix)) +
+      geom_line() +
+      scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+      scale_y_continuous(limits = c(0,100)) +
+      labs(y = '% chance of lake mixing') +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+      theme(text = element_text(size = 20),
+            plot.caption = element_text(size = 12),
+            panel.grid.minor = element_blank())
+  }
+
+
+  if (use_density == TRUE) {
+    message(paste0('using a ', threshold, ' kg/m3 density difference to define mixing'))
+
+    temp_forecast <- forecast_df |>
+      filter(depth %in% c(max_depth, min_depth),
+             datetime >= reference_datetime) |>
+      pivot_wider(names_from = depth, names_prefix = 'wtr_', values_from = prediction) %>% na.omit()
+
+    colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', min_depth))] <- 'min_depth'
+    colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', max_depth))] <- 'max_depth'
+
+    temp_forecast |>
+      mutate(min_depth = rLakeAnalyzer::water.density(min_depth),
+             max_depth = rLakeAnalyzer::water.density(max_depth),
+             mixed = ifelse((max_depth - min_depth) < threshold,
+                            1, 0)) |>
+      group_by(datetime) |>
+      summarise(percent_mix = 100*(sum(mixed)/n())) |>
+      ggplot(aes(datetime, y=percent_mix)) +
+      geom_line() +
+      scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+      scale_y_continuous(limits = c(0,100)) +
+      labs(y = '% chance of lake mixing') +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+      theme(text = element_text(size = 20),
+            plot.caption = element_text(size = 12),
+            panel.grid.minor = element_blank())
+  }
+
+
+
+}
+
+
+# Generate plot for ice chance %
+plot_ice <- function(forecast_df) {
+
+
+  # Labels for plot
+  my_breaks <- lubridate::with_tz(seq(min(forecast_df$datetime), max(forecast_df$datetime), by = "1 day"),"America/New_York")
+  my_label <- seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days")
+  my_labels <- as.character(my_breaks)
+  my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+
+  forecast_df %>%
+    mutate(ice = ifelse(prediction > 0, 1, 0)) %>%
+    dplyr::filter(datetime >= reference_datetime) |>
+    group_by(datetime) %>%
+    summarise(percent_ice = 100*(sum(ice)/n())) %>%
+    ggplot(., aes(datetime, y=percent_ice)) +
+    geom_line() +
+    scale_x_continuous(breaks = my_breaks, labels = my_labels) +
+    scale_y_continuous(limits = c(0,100)) +
+    labs(y = '% chance of ice') +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
+    theme(text = element_text(size = 20),
+          plot.caption = element_text(size = 12),
+          panel.grid.minor = element_blank())
+}
+
+
+
+
