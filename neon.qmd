@@ -17,7 +17,7 @@ library(score4cast)
 library(thematic)
 thematic_rmd(bg="white", fg="black", accent="blue")
 
-#source("R/plot-utils.R")
+source("R/flare-plots.R")
 
 
 ```
@@ -30,17 +30,18 @@ The National Ecological Observatory Network (NEON) is a U.S. National Science Fo
 ## Barco Lake
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("BARC")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("BARC"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -49,78 +50,52 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
-## date of each team's most recent forecast
-
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "BARC")
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20))  
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r}
+```{r eval=F}
 # depth plot
-
 depth_scores <- arrow::open_dataset(s3) |> 
   filter(variable == "depth",
          site_id %in% c("BARC"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
+plot_depth(depth_scores) 
+```
 
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("BARC"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()%>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
+
 ```
 
 ## Crampton Lake
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("CRAM")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("CRAM"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -132,105 +107,64 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
-  filter(site_id == "CRAM") 
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
+  filter(site_id == "CRAM")
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20))  
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```
 
-```{r}
+```{r eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("CRAM"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
+plot_depth(depth_scores)
 
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+```
+
+```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("CRAM"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() %>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
 
 ```
 
 ```{r}
 # Ice plot
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("CRAM"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-# Calculate the % chance of ice yes/no
-ice_forecasts %>%
-  mutate(ice = ifelse(prediction > 0, 1, 0)) %>% 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  group_by(datetime) %>% 
-  summarise(percent_ice = 100*(sum(ice)/n())) %>%
-  ggplot(., aes(datetime, y=percent_ice)) +
-  geom_line() +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20), 
-        plot.caption = element_text(size = 12),
-        panel.grid.minor = element_blank())
- 
+plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
 
 ## Little Rock Lake
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("LIRO")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("LIRO"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -239,92 +173,49 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
-## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "LIRO")
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20))  
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
 ```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("LIRO"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() %>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
+
+```
+
+```{r eval= F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
-
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+plot_depth(depth_scores)
 
 ```
 
 ```{r eval = TRUE}
 # Ice plot
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-# Calculate the % chance of ice yes/no
-ice_forecasts %>%
-  mutate(ice = ifelse(prediction > 0, 1, 0)) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  group_by(datetime) %>% 
-  summarise(percent_ice = 100*(sum(ice)/n())) %>%
-  ggplot(., aes(datetime, y=percent_ice)) +
-  geom_line() +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20), 
-        plot.caption = element_text(size = 12),
-        panel.grid.minor = element_blank())
-
+plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon. 
 ```
 
@@ -333,17 +224,18 @@ ice_forecasts %>%
 ## Prairie Lake
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRLA")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("PRLA"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -352,110 +244,66 @@ df_insitu_scores <- arrow::open_dataset(s3) |>
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r}
-## date of each team's most recent forecast
-
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "PRLA")
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20)) 
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r}
+```{r eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
+plot_depth(depth_scores) 
 
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+```
+
+```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("PRLA"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() %>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
 
 ```
 
 ```{r eval = TRUE}
 # Ice plot
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-# Calculate the % chance of ice yes/no
-ice_forecasts %>%
-  mutate(ice = ifelse(prediction > 0, 1, 0)) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  group_by(datetime) %>% 
-  summarise(percent_ice = 100*(sum(ice)/n())) %>%
-  ggplot(., aes(datetime, y=percent_ice)) +
-  geom_line() +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20), 
-        plot.caption = element_text(size = 12),
-        panel.grid.minor = element_blank())
+plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
-
-
 
 ## Prairie Pothole
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRPO")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("PRPO"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -468,87 +316,47 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "PRPO")
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20))  
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
+
+```
+
+```{r, eval = F}
+# depth plot
+
+depth_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "depth",
+         site_id %in% c("PRPO"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+
+plot_depth(depth_scores) 
 
 ```
 
 ```{r}
-# depth plot
-
-depth_scores <- arrow::open_dataset(s3) |> 
-  filter(variable == "depth",
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent) |> 
-  dplyr::collect()
+  dplyr::collect() %>%
+  na.omit(prediction)
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
-
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
 
 ```
 
 ```{r prpo-ice, eval = TRUE}
 # Ice plot
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("PRPO"),
+         site_id %in% c("PRLA"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
-# Calculate the % chance of ice yes/no
-ice_forecasts %>%
-  mutate(ice = ifelse(prediction > 0, 1, 0)) %>%  
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  group_by(datetime) %>% 
-  summarise(percent_ice = 100*(sum(ice)/n())) %>%
-  ggplot(., aes(datetime, y=percent_ice)) +
-  geom_line() +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(0,100)) +
-  labs(y = '% chance of ice') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20), 
-        plot.caption = element_text(size = 12),
-        panel.grid.minor = element_blank())
+plot_ice(ice_forecasts)
+
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
 
@@ -556,17 +364,18 @@ ice_forecasts %>%
 ## Suggs Lake
 
 ```{r}
-s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-most_recent <-  arrow::open_dataset(s3) |> 
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("SUGG")) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
-         depth %in% c(0.5),
+         # depth %in% c(0.5),
          site_id %in% c("SUGG"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -576,60 +385,110 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 ## date of each team's most recent forecast
+
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "SUGG")
-my_breaks <- lubridate::with_tz(seq(min(df_insitu_scores_lake$datetime), max(df_insitu_scores_lake$datetime), by = "1 day"),"America/New_York")   
-my_label <- seq(lubridate::as_datetime(df_insitu_scores_lake$reference_datetime)[1], max(df_insitu_scores_lake$datetime), by = "5 days")
-my_labels <- as.character(my_breaks)
-my_labels[which(!(my_breaks %in% my_label))] <- " "
 
-y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
-df_insitu_scores_lake |> 
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York"),
-                depth = paste0("Depth: ", depth)) |> 
-  dplyr::filter(datetime >= reference_datetime) |> 
-  ggplot(aes(x = datetime)) +
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), fill = "lightblue", color = "lightblue") +
-  geom_line(aes(y = mean)) +
-  #geom_point(aes(y = observation)) +
-  #geom_vline(aes(xintercept = reference_datetime)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  facet_wrap(~depth) +
-  labs(y = y_label) +
-  ylim(c(-5,35)) +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20))
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
+
 ```
 
-```{r}
+```{r, eval = F}
 # depth plot
-
-depth_scores <- arrow::open_dataset(s3) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("SUGG"),
          reference_datetime == most_recent) |> 
-  dplyr::collect()
+  dplyr::collect() 
 
-depth_change <- ceiling((max(depth_scores$mean) - min(depth_scores$mean))*2)/2
-max_depth <- ceiling(max(depth_scores$mean)*2)/2
-
-depth_scores %>%
-  dplyr::mutate(datetime = lubridate::with_tz(lubridate::as_datetime(datetime), "America/New_York"),
-                reference_datetime = lubridate::with_tz(lubridate::as_datetime(reference_datetime), "America/New_York")) %>% 
-  dplyr::filter(datetime >= reference_datetime) %>% 
-  ggplot(., aes(x=datetime))+
-  geom_ribbon(aes(ymin = quantile10, ymax = quantile90), colour = 'lightgreen', fill = 'lightgreen') +
-  geom_line(aes( y=mean)) +
-  scale_x_continuous(breaks = my_breaks, labels = my_labels) +
-  scale_y_continuous(limits = c(max_depth - depth_change, max_depth)) +
-  labs(y = 'Lake depth (m)') +
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-  theme(text = element_text(size = 20),
-        panel.grid.minor = element_blank())  
+plot_depth(depth_scores)  
 
 
 ```
+
+```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("SUGG"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() %>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
+
+```
+
+## Toolik Lake
+
+```{r}
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
+  filter(site_id %in% c("TOOL")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "temperature",
+         # depth %in% c(0.5),
+         site_id %in% c("TOOL"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+
+```{r}
+## date of each team's most recent forecast
+
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "TOOL")
+
+plot_temp(df_insitu_scores_lake, depths = c('0.5'))
+
+```
+
+```{r, eval = F}
+# depth plot
+
+depth_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "depth",
+         site_id %in% c("TOOL"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+
+plot_depth(depth_scores) 
+
+```
+
+```{r}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "temperature",
+         site_id %in% c("TOOL"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() %>%
+  na.omit(prediction)
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
+
+```
+
+```{r prpo-ice, eval = TRUE}
+# Ice plot
+ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
+  filter(variable == "ice_thickness",
+         site_id %in% c("TOOL"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+plot_ice(ice_forecasts)
+
+#Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
+```
+
+
 :::
