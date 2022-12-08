@@ -49,7 +49,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r barc-temp}
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "BARC")
 
@@ -57,9 +57,9 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r eval=F}
+```{r barc-depth eval=F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("BARC"),
          reference_datetime == most_recent) |> 
@@ -68,7 +68,7 @@ depth_scores <- arrow::open_dataset(s3) |>
 plot_depth(depth_scores) 
 ```
 
-```{r}
+```{r barc-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -103,7 +103,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r cram-temp}
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
@@ -112,7 +112,7 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```
 
-```{r eval = F}
+```{r cram-depth eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -125,7 +125,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r}
+```{r cram-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -138,7 +138,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r}
+```{r cram-ice}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -172,7 +172,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r liro-temp}
 
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "LIRO")
@@ -181,7 +181,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r}
+```{r liro-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -194,7 +194,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r eval= F}
+```{r liro-depth eval= F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -207,7 +207,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r eval = TRUE}
+```{r liro-ice eval = TRUE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -218,8 +218,6 @@ ice_forecasts <- arrow::open_dataset(s3_forecast) |>
 plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon. 
 ```
-
-
 
 ## Prairie Lake
 
@@ -243,7 +241,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r prla-temp}
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "PRLA")
 
@@ -251,7 +249,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r eval = F}
+```{r prla-depth eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -264,7 +262,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r}
+```{r prla-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -277,7 +275,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r eval = TRUE}
+```{r prla-ice eval = TRUE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -311,7 +309,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r prpo-temp}
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
@@ -334,7 +332,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r}
+```{r prpo-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -360,10 +358,9 @@ plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
 
-
 ## Suggs Lake
 
-```{r}
+```{r }
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
@@ -383,7 +380,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r sugg-temp}
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
@@ -393,7 +390,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r, eval = F}
+```{r sugg-depth, eval = F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
@@ -406,7 +403,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r}
+```{r sugg-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -421,7 +418,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ## Toolik Lake
 
-```{r}
+```{r }
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
@@ -441,7 +438,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r}
+```{r tool-temp}
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
@@ -451,7 +448,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```
 
-```{r, eval = F}
+```{r tool-depth, eval = F}
 # depth plot
 
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -464,7 +461,7 @@ plot_depth(depth_scores)
 
 ```
 
-```{r}
+```{r tool-mixing}
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
@@ -489,6 +486,4 @@ plot_ice(ice_forecasts)
 
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
-
-
 :::
