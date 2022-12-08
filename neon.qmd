@@ -187,7 +187,7 @@ depth_scores %>%
 
 ```
 
-```{r eval = FALSE}
+```{r}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -296,7 +296,7 @@ depth_scores %>%
 
 ```
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -408,7 +408,7 @@ depth_scores %>%
 
 ```
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
@@ -519,7 +519,7 @@ depth_scores %>%
 
 ```
 
-```{r eval = FALSE}
+```{r prpo-ice, eval = TRUE}
 # Ice plot
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
