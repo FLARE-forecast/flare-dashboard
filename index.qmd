@@ -67,8 +67,8 @@ if (!file.exists("neon.json")) {
 
 ```{r fig.height=5, fig.width=5, echo=FALSE, include=TRUE}
 tmap::tmap_mode("view")
-neon  |>
-  tm_shape(bbox=c(139.168997,-35.436808,-74,48)) + 
+neon  |> #-149.610636, 68.630692
+  tm_shape(bbox=c(-260,-35.436808, -74, 68.630692)) + 
   tm_bubbles(col="Partner", popup.vars = c("site_id"), jitter =TRUE) 
 ```
 
