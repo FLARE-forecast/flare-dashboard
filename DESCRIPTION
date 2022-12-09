@@ -16,7 +16,8 @@ Depends: tidyverse,
          remotes,
          minio,
          rLakeAnalyzer,
-         decor
+         decor,
+         brio
 Remotes:  
     github::eco4cast/score4cast, 
     github::eco4cast/neon4cast, 
