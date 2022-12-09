@@ -18,7 +18,7 @@ library(thematic)
 thematic_rmd(bg="white", fg="black", accent="blue")
 
 source("R/flare-plots.R")
-source("R/ignore_sigpipe.R")
+source("R/ignore_sigpipes.R")
 
 
 ```
