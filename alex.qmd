@@ -17,6 +17,8 @@ library(score4cast)
 library(thematic)
 thematic_rmd(bg="white", fg="black", accent="blue")
 
+source("R/ignore_sigpipe.R")
+
 #source("R/plot-utils.R")
 
 
