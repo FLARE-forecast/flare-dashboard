@@ -31,21 +31,6 @@ Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake
 ## Lake Sunapee
 
 ```{r}
-# s3 <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-# 
-# most_recent <-  arrow::open_dataset(s3) |> 
-#   filter(site_id == "sunp") |> 
-#   summarize(max = max(reference_datetime)) |> 
-#   collect() |> 
-#   pull()
-# 
-# df_insitu_scores <- arrow::open_dataset(s3) |> 
-#   filter(variable == "temperature",
-#          depth %in% c(1.0, 8.0),
-#          site_id == "sunp",
-#          reference_datetime == most_recent) |> 
-#   dplyr::collect()
-
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
@@ -69,14 +54,14 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "sunp")
 
-plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
+plot_temp(df_insitu_scores_lake, depths = c(1,10)) 
 ```
 
 ```{r sunp-error, eval = FALSE}
 df_horizon <- arrow::open_dataset(s3) |> 
   filter(variable == "temperature",
          site_id == "sunp",
-         depth %in% c(1.0, 8.0),
+         depth %in% c(1.0, 10.0),
          horizon %in% c(2,7,14)) |> 
   dplyr::collect()
 
@@ -110,7 +95,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   dplyr::collect()%>%
   na.omit(prediction)
 
-plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 10), use_density = T, threshold = 0.1)
 
 ```
 
