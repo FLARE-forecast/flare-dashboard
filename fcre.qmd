@@ -336,7 +336,7 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 ```
 
 
-```{r bvre-depth, eval=F}
+```{r ccre-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
