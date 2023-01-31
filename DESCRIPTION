@@ -21,4 +21,5 @@ Depends: tidyverse,
 Remotes:  
     github::eco4cast/score4cast, 
     github::eco4cast/neon4cast, 
+    github::eco4cast/viz4cast
     github::cboettig/minio
