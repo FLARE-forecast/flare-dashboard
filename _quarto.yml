@@ -23,6 +23,8 @@ website:
         icon: droplet
       - href: neon.qmd
         icon: droplet
+      - href: flare_status.qmd
+        icon: clipboard-pulse
 
   page-footer:
     left: "CC-BY"

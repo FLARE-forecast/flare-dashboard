@@ -1,0 +1,28 @@
+---
+title: "Status"
+editor: visual
+---
+
+```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
+# These may need to change later 
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+library(vis4cast)
+library(glue)
+library(reactable)
+library(httr)
+library(reactablefmtr)
+score4cast::ignore_sigpipe()
+## source function script 
+source("R/status_functions.R")
+```
+
+## Workflow Status
+
+```{r}
+health_check_table()
+```
