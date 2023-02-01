@@ -51,10 +51,25 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r sunp-temp}
-df_insitu_scores_lake <- df_insitu_scores |> 
-  filter(site_id == "sunp")
 
-plot_temp(df_insitu_scores_lake, depths = c(1,10)) 
+## MAKE PLOTTING FUNCTION 
+
+# OLD CODE
+#df_insitu_scores_lake <- df_insitu_scores |> 
+#  filter(site_id == "sunp")
+
+#plot_temp(df_insitu_scores_lake, depths = c(1,10)) 
+
+
+## NEW CODE WITH FUNCTION
+site <- 'sunp'
+model <- 'test_runS3'
+depths <- c(0,5,10)
+lake_name <- 'Lake Sunapee'
+y_limits <- c(-1,8.5)
+
+test_df <- plot_temp_single_panel(s3_score,site,model,depths,lake_name,y_limits)
+
 ```
 
 ```{r sunp-error, eval = FALSE}
