@@ -31,7 +31,7 @@ health_check_table <- function(){
 
     hc_table <- reactable(check_df,
                           defaultColDef = colDef(
-                            align = "center"),
+                            align = "left"),
                           columns = list(hc_names = colDef(name='Process Name'),
                                          hc_status = colDef(name='Status'),
                                          hc_latest = colDef(name = 'Updated (UTC)')),
