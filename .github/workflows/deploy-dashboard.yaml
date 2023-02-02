@@ -24,9 +24,9 @@ jobs:
 
       - uses: r-lib/actions/setup-renv@v2
 
-      - name: preload
-        run: |
-          R -e 'source("cache.R")'
+      #- name: preload
+      #  run: |
+      #    R -e 'source("cache.R")'
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
