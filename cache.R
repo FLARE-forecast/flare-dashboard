@@ -1,9 +1,9 @@
 
 library(minio)
 install_mc()
-mc_alias_set("efi",  endpoint="data.ecoforecast.org",
+mc_alias_set("efi",  endpoint="s3.flare-forecast.org",
              access_key = "", secret_key = "")
-mc("mirror efi/neon4cast-scores cache/")
+mc("mirror efi/scores/parquet cache/")
 
 
 
