@@ -193,48 +193,69 @@
 #   invisible(pdf_file_name)
 # }
 
+# ## check and see what data from arrow looks like
+# s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+#
+# most_recent <-  arrow::open_dataset(s3_score) |>
+#   filter(site_id %in% c("sunp")) |>
+#   summarize(max = max(reference_datetime)) |>
+#   collect() |>
+#   pull()
+#
+# df_insitu_scores <- arrow::open_dataset(s3_score) |>
+#   filter(variable == "temperature",
+#          # depth %in% c(0.5),
+#          site_id %in% c("sunp"),
+#          reference_datetime == most_recent) |>
+#   dplyr::collect()
 
 
-## check and see what data from arrow looks like
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
-most_recent <-  arrow::open_dataset(s3_score) |>
-  filter(site_id %in% c("sunp")) |>
+install.packages('devtools')
+library(devtools)
+library(tidyverse)
+install_github("FLARE-forecast/flareVis")
+library(flareVis)
+
+site <- 'sunp'
+model <- 'test_runS3'
+depths <- c(0,5,10)
+lake_name <- 'Lake Sunapee'
+y_limits <- c(-5,30)
+y_axis_limits <- c(-5,30)
+#depth_values <- c(0,5,10)
+
+score_data <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+
+
+
+## do data subsetting
+# find most recent forecast run date for the model and site
+most_recent <-  arrow::open_dataset(score_data) |>
+  filter(site_id %in% site,
+         model_id %in% model) |>
   summarize(max = max(reference_datetime)) |>
   collect() |>
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score) |>
+# subset and collect data based off of site, model, depth, and reference datetime
+score_df <- arrow::open_dataset(score_data) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
-         site_id %in% c("sunp"),
+         depth %in% depths,
+         site_id %in% site,
+         model_id %in% model,
          reference_datetime == most_recent) |>
   dplyr::collect()
 
 
+flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site)
 
 
 ### testing code taken from plot_temp function -- code built off of freya's existing plot_temp() function
+test_df <- plot_temp_test(s3_score,'sunp','test_runS3',depths,lake_name,y_limits)
 
 plot_temp_test <- function(score_data,site_identifier, model_identifier, depth_values,site_name,y_axis_limits) {
-
-  # find most recent forecast run date for the model and site
-  most_recent <-  arrow::open_dataset(score_data) |>
-    filter(site_id %in% site_identifier,
-           model_id %in% model_identifier) |>
-    summarize(max = max(reference_datetime)) |>
-    collect() |>
-    pull()
-
-  # subset and collect data based off of site, model, depth, and reference datetime
-  score_df <- arrow::open_dataset(score_data) |>
-    filter(variable == "temperature",
-           # depth %in% c(0.5),
-           depth %in% depth_values,
-           site_id %in% site_identifier,
-           model_id %in% model_identifier,
-           reference_datetime == most_recent) |>
-    dplyr::collect()
 
   # Fix dates and rename columns to match plotting code
   plot_df <- score_df |>
