@@ -35,17 +35,29 @@ Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("sunp")) |> 
-  summarize(max = max(reference_datetime)) |> 
-  collect() |> 
+## define function arguments
+site <- 'sunp'
+model <- 'test_runS3'
+depths <- c(0,5,10)
+lake_name <- 'Lake Sunapee'
+y_limits <- c(-5,30)
+
+## do data subsetting
+# find most recent forecast run date for the model and site
+most_recent <-  arrow::open_dataset(s3_score) |>
+  filter(site_id %in% site,
+         model_id %in% model) |>
+  summarize(max = max(reference_datetime)) |>
+  collect() |>
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score) |> 
+# subset and collect data based off of site, model, depth, and reference datetime
+score_df <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
-         # depth %in% c(0.5),
-         site_id %in% c("sunp"),
-         reference_datetime == most_recent) |> 
+         depth %in% depths,
+         site_id %in% site,
+         model_id %in% model,
+         reference_datetime == most_recent) |>
   dplyr::collect()
 ```
 
@@ -53,21 +65,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r sunp-temp}
 
-## MAKE PLOTTING FUNCTION 
-
-# OLD CODE
-#df_insitu_scores_lake <- df_insitu_scores |> 
-#  filter(site_id == "sunp")
-
-#plot_temp(df_insitu_scores_lake, depths = c(1,10)) 
-
-
-## NEW CODE WITH FUNCTION
-site <- 'sunp'
-model <- 'test_runS3'
-depths <- c(0,5,10)
-lake_name <- 'Lake Sunapee'
-y_limits <- c(-5,30)
+## RUN PLOTTING FUNCTION 
 
 test_df <- plot_temp_single_panel(s3_score,site,model,depths,lake_name,y_limits)
 

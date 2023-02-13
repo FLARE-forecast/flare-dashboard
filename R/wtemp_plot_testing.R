@@ -211,10 +211,13 @@
 
 
 
-install.packages('devtools')
-library(devtools)
+#install.packages('devtools')
+#library(devtools)
 library(tidyverse)
-install_github("FLARE-forecast/flareVis")
+#install_github("FLARE-forecast/flareVis")
+library(flareVis)
+library(remotes)
+remotes::install_github('FLARE-forecast/flareVis')
 library(flareVis)
 
 site <- 'sunp'
@@ -222,7 +225,7 @@ model <- 'test_runS3'
 depths <- c(0,5,10)
 lake_name <- 'Lake Sunapee'
 y_limits <- c(-5,30)
-y_axis_limits <- c(-5,30)
+#y_axis_limits <- c(-5,30)
 #depth_values <- c(0,5,10)
 
 score_data <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
