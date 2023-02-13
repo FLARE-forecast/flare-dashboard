@@ -12,7 +12,9 @@ library(patchwork)
 library(tidyverse)
 library(neon4cast)
 library(score4cast)
-library(devtools)
+
+library(remotes)
+remotes::install_github('FLARE-forecast/flareVis')
 
 
 library(thematic)
@@ -67,7 +69,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ## RUN PLOTTING FUNCTION 
 
-test_df <- plot_temp_single_panel(s3_score,site,model,depths,lake_name,y_limits)
+test_df <- flareVis::plot_temp_single_panel(s3_score,site,model,depths,lake_name,y_limits)
 
 ```
 
