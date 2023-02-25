@@ -14,7 +14,6 @@ library(neon4cast)
 library(score4cast)
 
 library(remotes)
-remotes::install_github('FLARE-forecast/flareVis')
 
 
 library(thematic)
