@@ -66,9 +66,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r sunp-temp}
 
-## RUN PLOTTING FUNCTION 
-
-test_df <- flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site)
+flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site)
 
 ```
 
