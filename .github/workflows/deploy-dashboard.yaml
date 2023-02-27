@@ -28,7 +28,7 @@ jobs:
       #  run: |
       #    R -e 'source("cache.R")'
       - name: install packages
-        run: R -e 'remotes::install_github('FLARE-forecast/flareVis')'
+        run: R -e 'remotes::install_github("FLARE-forecast/flareVis")'
           
           
       - name: Publish to GitHub Pages (and render)
