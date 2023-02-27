@@ -30,7 +30,7 @@ jobs:
       - name: install packages
         env:
            GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-        run: R -e 'remotes::install_github("forecast-forecast/flareVis")'
+        run: R -e 'remotes::install_github("flare-forecast/flareVis")'
           
           
       - name: Publish to GitHub Pages (and render)
