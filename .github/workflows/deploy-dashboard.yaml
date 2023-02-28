@@ -39,3 +39,8 @@ jobs:
            target: gh-pages
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+           
+      - name: ping healthchecks 
+        run: |
+         R - e 'install.package("RCurl")'
+         R -e 'RCurl::url.exists("https://hc-ping.com/ac0e5986-003b-4762-ab2a-2ee3d117fd4c", timeout = 5)'
