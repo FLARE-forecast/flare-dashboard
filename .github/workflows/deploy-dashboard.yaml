@@ -42,5 +42,4 @@ jobs:
            
       - name: ping healthchecks 
         run: |
-         R -e 'install.packages("RCurl")'
-         R -e 'RCurl::url.exists("https://hc-ping.com/ac0e5986-003b-4762-ab2a-2ee3d117fd4c", timeout = 5)'
+         R -e 'df <- curl::curl_fetch_memory("https://hc-ping.com/ac0e5986-003b-4762-ab2a-2ee3d117fd4c")'
