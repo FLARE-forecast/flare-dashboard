@@ -314,9 +314,9 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("PRPO")) |> 
-  summarize(max = max(reference_datetime),
+  filter(site_id %in% c("PRPO"),
          model_id == forecast_flare_model) |> 
+  summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
