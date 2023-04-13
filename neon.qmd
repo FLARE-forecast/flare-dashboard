@@ -20,7 +20,7 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 source("R/flare-plots.R")
 source("R/ignore_sigpipes.R")
 
-
+forecast_flare_model <- 'test_runS3'
 ```
 
 ## Most recent forecasts
@@ -35,7 +35,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("BARC")) |> 
+  filter(site_id %in% c("BARC"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -44,7 +45,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("BARC"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -63,7 +65,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("BARC"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_depth(depth_scores) 
@@ -74,7 +77,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("BARC"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()%>%
   na.omit(prediction)
 
@@ -89,7 +93,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("CRAM")) |> 
+  filter(site_id %in% c("CRAM"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -98,7 +103,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("CRAM"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -119,7 +125,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("CRAM"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_depth(depth_scores)
@@ -131,7 +138,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("CRAM"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -158,7 +166,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("LIRO")) |> 
+  filter(site_id %in% c("LIRO"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -167,7 +176,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("LIRO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -187,7 +197,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("LIRO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -201,7 +212,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("LIRO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_depth(depth_scores)
@@ -213,7 +225,8 @@ plot_depth(depth_scores)
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("LIRO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_ice(ice_forecasts)
@@ -227,7 +240,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("PRLA")) |> 
+  filter(site_id %in% c("PRLA"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -236,7 +250,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("PRLA"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -256,7 +271,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("PRLA"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_depth(depth_scores) 
@@ -268,7 +284,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("PRLA"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -281,7 +298,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("PRLA"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_ice(ice_forecasts)
@@ -295,7 +313,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("PRPO")) |> 
+  filter(site_id %in% c("PRPO"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -304,7 +323,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("PRPO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -326,7 +346,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("PRPO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_depth(depth_scores) 
@@ -338,7 +359,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("PRPO"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -351,7 +373,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("PRLA"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_ice(ice_forecasts)
@@ -366,7 +389,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("SUGG")) |> 
+  filter(site_id %in% c("SUGG"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -375,7 +399,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("SUGG"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -396,7 +421,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("SUGG"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_depth(depth_scores)  
@@ -409,7 +435,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("SUGG"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -424,7 +451,8 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("TOOL")) |> 
+  filter(site_id %in% c("TOOL"),
+         model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -433,7 +461,8 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("TOOL"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 ```
 
@@ -455,7 +484,8 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("TOOL"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_depth(depth_scores) 
@@ -467,7 +497,8 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("TOOL"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect() %>%
   na.omit(prediction)
 
@@ -480,7 +511,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("TOOL"),
-         reference_datetime == most_recent) |> 
+         reference_datetime == most_recent,
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_ice(ice_forecasts)
