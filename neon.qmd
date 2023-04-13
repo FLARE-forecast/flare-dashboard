@@ -149,14 +149,13 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```{r cram-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
-  filter(variable == "ice_thickness",
-         site_id %in% c("CRAM"),
-         reference_datetime == most_recent,
-         model_id == forecast_flare_model) |> 
-  dplyr::collect()
+#ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
+#  filter(variable == "ice_thickness",
+#         site_id %in% c("CRAM"),
+#         reference_datetime == most_recent) |> 
+#  dplyr::collect()
 
-plot_ice(ice_forecasts)
+#plot_ice(ice_forecasts)
 #Percent chance indicates the proportion of ensemble members that predict ice at each forecast horizon.
 ```
 
