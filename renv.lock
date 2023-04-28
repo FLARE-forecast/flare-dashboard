@@ -1098,6 +1098,32 @@
       ],
       "Hash": "4c1fa57ba6e32dd283d1cc44510e7bdb"
     },
+    "neon4cast": {
+      "Package": "neon4cast",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "Remotes": "github::eco4cast/read4cast, github::eco4cast/score4cast,\n        github::cboettig/aws.s3",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "neon4cast",
+      "RemoteUsername": "eco4cast",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "a41413869ecdf4a9b04379152b4e37fb082b83eb",
+      "Hash": "4d0e3b15c6cdcb04ac6f75ed48c424d9",
+      "Requirements": [
+        "arrow",
+        "aws.s3",
+        "distributional",
+        "dplyr",
+        "ncdf4",
+        "read4cast",
+        "rlang",
+        "score4cast",
+        "tibble",
+        "tidyr",
+        "usethis"
+      ]
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.0.6",
