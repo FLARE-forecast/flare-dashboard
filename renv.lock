@@ -1929,6 +1929,30 @@
       ],
       "Hash": "39b1d69229e30314e7cba023c777f52d"
     },
+    "tmap": {
+      "Package": "tmap",
+      "Version": "3.3-3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "7c1c0624e51105988b579d77289cea7b",
+      "Requirements": [
+        "RColorBrewer",
+        "abind",
+        "classInt",
+        "htmltools",
+        "htmlwidgets",
+        "leafem",
+        "leaflet",
+        "leafsync",
+        "rlang",
+        "sf",
+        "stars",
+        "tmaptools",
+        "units",
+        "viridisLite",
+        "widgetframe"
+      ]
+    },
     "tzdb": {
       "Package": "tzdb",
       "Version": "0.3.0",
