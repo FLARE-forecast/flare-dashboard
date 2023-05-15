@@ -34,14 +34,14 @@ The National Ecological Observatory Network (NEON) is a U.S. National Science Fo
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("BARC"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("BARC"),
@@ -62,7 +62,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```{r barc-depth, eval=F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("BARC"),
          reference_datetime == most_recent,
@@ -74,7 +74,7 @@ plot_depth(depth_scores)
 
 ```{r barc-mixing}
 
-most_recent <-  arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_forecast) |> 
   filter(site_id %in% c("BARC"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
@@ -83,7 +83,7 @@ most_recent <-  arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |>
 
 
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("BARC"),
          reference_datetime == most_recent,
@@ -101,14 +101,14 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("CRAM"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("CRAM"),
@@ -131,7 +131,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```{r cram-depth, eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("CRAM"),
          reference_datetime == most_recent,
@@ -174,14 +174,14 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("LIRO"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("LIRO"),
@@ -218,7 +218,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ```{r liro-depth, eval= F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent,
@@ -248,14 +248,14 @@ plot_ice(ice_forecasts)
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRLA"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("PRLA"),
@@ -277,7 +277,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```{r prla-depth, eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent,
@@ -321,14 +321,14 @@ plot_ice(ice_forecasts)
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRPO"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("PRPO"),
@@ -352,7 +352,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```{r prpo-depth, eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent,
@@ -370,9 +370,9 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |
   filter(variable == "temperature",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model) |> 
-  dplyr::collect() %>%
-  na.omit(prediction)
+         model_id == forecast_flare_model,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
 
@@ -398,14 +398,14 @@ plot_ice(ice_forecasts)
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("SUGG"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("SUGG"),
@@ -428,7 +428,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```{r sugg-depth, eval = F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("SUGG"),
          reference_datetime == most_recent,
@@ -460,17 +460,17 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
-  filter(site_id %in% c("TOOL"),
+most_recent <-  arrow::open_dataset(s3_score) |> 
+  filter(site_id %in% c("TOOK"),
          model_id == forecast_flare_model) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
-df_insitu_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          # depth %in% c(0.5),
-         site_id %in% c("TOOL"),
+         site_id %in% c("TOOK"),
          reference_datetime == most_recent,
          model_id == forecast_flare_model) |> 
   dplyr::collect()
@@ -482,7 +482,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 ## date of each team's most recent forecast
 
 df_insitu_scores_lake <- df_insitu_scores |> 
-  filter(site_id == "TOOL")
+  filter(site_id == "TOOK")
 
 plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
@@ -491,9 +491,9 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 ```{r tool-depth, eval = F}
 # depth plot
 
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
-         site_id %in% c("TOOL"),
+         site_id %in% c("TOOK"),
          reference_datetime == most_recent,
          model_id == forecast_flare_model) |> 
   dplyr::collect() 
@@ -506,7 +506,7 @@ plot_depth(depth_scores)
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
-         site_id %in% c("TOOL"),
+         site_id %in% c("TOOK"),
          reference_datetime == most_recent,
          model_id == forecast_flare_model,
          !is.na(prediction)) |> 

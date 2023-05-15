@@ -45,7 +45,7 @@ y_limits <- c(-5,30)
 
 ## do data subsetting
 # find most recent forecast run date for the model and site
-most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |>
+most_recent <-  arrow::open_dataset(s3_score) |>
   filter(site_id %in% site,
          model_id %in% model) |>
   summarize(max = max(reference_datetime)) |>
@@ -53,7 +53,7 @@ most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |>
   pull()
 
 # subset and collect data based off of site, model, depth, and reference datetime
-score_df <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |>
+score_df <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          depth %in% depths,
          site_id %in% site,
@@ -90,7 +90,7 @@ df_horizon |>
 
 ```{r sunp-depth, eval=F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
+depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("sunp"),
          reference_datetime == most_recent) |> 

@@ -204,7 +204,7 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
     temp_forecast <- forecast_df |>
       filter(depth %in% c(max_depth, min_depth),
              datetime >= reference_datetime) |>
-      pivot_wider(names_from = depth, names_prefix = 'wtr_', values_from = prediction) %>% na.omit()
+      pivot_wider(names_from = depth, names_prefix = 'wtr_', values_from = prediction)# %>% na.omit()
 
     colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', min_depth))] <- 'min_depth'
     colnames(temp_forecast)[which(colnames(temp_forecast) == paste0('wtr_', max_depth))] <- 'max_depth'
