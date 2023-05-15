@@ -504,7 +504,7 @@ plot_depth(depth_scores)
 
 ```{r tool-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("TOOK"),
          reference_datetime == most_recent,
@@ -520,7 +520,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("TOOL"),
+         site_id %in% c("TOOK"),
          reference_datetime == most_recent,
          model_id == forecast_flare_model) |> 
   dplyr::collect()
