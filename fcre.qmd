@@ -263,9 +263,9 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("bvre"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()%>%
-  na.omit(prediction)
+         reference_datetime == most_recent,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
 
@@ -348,9 +348,9 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("ccre"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()%>%
-  na.omit(prediction)
+         reference_datetime == most_recent,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
 
@@ -361,8 +361,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_densi
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("ccre"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()
+         reference_datetime == most_recent,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_ice(ice_forecasts)
 ```
