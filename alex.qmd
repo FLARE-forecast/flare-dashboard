@@ -25,7 +25,7 @@ source("R/ignore_sigpipes.R")
 
 ## Most recent forecasts
 
-Lake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water).  The forecasts are generated in collaboration with Matt Hipsey's research group at the University of Western Australia. 
+Lake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water). The forecasts are generated in collaboration with Matt Hipsey's research group at the University of Western Australia.
 
 ::: panel-tabset
 ## Lake Alexandrina
@@ -62,9 +62,9 @@ plot_temp(df_insitu_scores_lake, depths = c(0.5,5))
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("ALEX"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()%>%
-  na.omit(prediction)
+         reference_datetime == most_recent,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
 ```

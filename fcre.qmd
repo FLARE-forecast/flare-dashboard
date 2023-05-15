@@ -77,9 +77,9 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("fcre"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()%>%
-  na.omit(prediction)
+         reference_datetime == most_recent,
+         !is.na(prediction)) |> 
+  dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
 
@@ -95,7 +95,6 @@ ice_forecasts <- arrow::open_dataset(s3_forecast) |>
 
 plot_ice(ice_forecasts)
 ```
-
 
 ```{r eval = FALSE}
 
@@ -248,7 +247,6 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c(1,8))  
 ```
 
-
 ```{r bvre-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -283,7 +281,6 @@ ice_forecasts <- arrow::open_dataset(s3_forecast) |>
 
 plot_ice(ice_forecasts)
 ```
-
 
 ```{r eval = FALSE}
 df <- arrow::open_dataset(s3) |> 
@@ -335,7 +332,6 @@ df_insitu_scores_lake <- df_insitu_scores |>
 plot_temp(df_insitu_scores_lake, depths = c(1,8))  
 ```
 
-
 ```{r ccre-depth, eval=F}
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
@@ -370,7 +366,6 @@ ice_forecasts <- arrow::open_dataset(s3_forecast) |>
 
 plot_ice(ice_forecasts)
 ```
-
 
 ```{r eval = FALSE}
 df <- arrow::open_dataset(s3) |> 
