@@ -45,7 +45,7 @@ y_limits <- c(-5,30)
 
 ## do data subsetting
 # find most recent forecast run date for the model and site
-most_recent <-  arrow::open_dataset(s3_score) |>
+most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE) |>
   filter(site_id %in% site,
          model_id %in% model) |>
   summarize(max = max(reference_datetime)) |>
@@ -53,7 +53,7 @@ most_recent <-  arrow::open_dataset(s3_score) |>
   pull()
 
 # subset and collect data based off of site, model, depth, and reference datetime
-score_df <- arrow::open_dataset(s3_score) |>
+score_df <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |>
   filter(variable == "temperature",
          depth %in% depths,
          site_id %in% site,
@@ -71,7 +71,7 @@ flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_lim
 ```
 
 ```{r sunp-error, eval = FALSE}
-df_horizon <- arrow::open_dataset(s3) |> 
+df_horizon <- arrow::open_dataset(s3, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
          site_id == "sunp",
          depth %in% c(1.0, 10.0),
@@ -90,7 +90,7 @@ df_horizon |>
 
 ```{r sunp-depth, eval=F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3_score) |> 
+depth_scores <- arrow::open_dataset(s3_score, unify_schemas = TRUE) |> 
   filter(variable == "depth",
          site_id %in% c("sunp"),
          reference_datetime == most_recent) |> 
@@ -101,7 +101,7 @@ plot_depth(depth_scores)
 
 ```{r sunp-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
          site_id %in% c("sunp"),
          reference_datetime == most_recent,
@@ -113,7 +113,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 10), use_dens
 
 ```{r sunp-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
+ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("sunp"),
          reference_datetime == most_recent) |> 
