@@ -144,7 +144,7 @@ plot_depth(depth_scores)
 
 ```{r cram-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("CRAM"),
          reference_datetime == most_recent,
@@ -203,7 +203,7 @@ plot_temp(df_insitu_scores_lake, depths = c('0.5'))
 
 ```{r liro-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent,
@@ -231,7 +231,7 @@ plot_depth(depth_scores)
 
 ```{r liro-ice, eval = TRUE}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent,
@@ -290,7 +290,7 @@ plot_depth(depth_scores)
 
 ```{r prla-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent,
@@ -304,7 +304,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```{r prla-ice, eval = TRUE}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent,
@@ -366,7 +366,7 @@ plot_depth(depth_scores)
 
 ```{r prpo-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent,
@@ -380,7 +380,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```{r prpo-ice, eval = TRUE}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent,
@@ -442,7 +442,7 @@ plot_depth(depth_scores)
 
 ```{r sugg-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
          site_id %in% c("SUGG"),
          reference_datetime == most_recent,
@@ -518,7 +518,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```{r took-ice, eval = TRUE}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("TOOK"),
          reference_datetime == most_recent,
