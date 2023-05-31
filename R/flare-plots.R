@@ -6,7 +6,7 @@ plot_temp <- function(score_df, depths = 0.5) {
 
   # Generate labels for plots
   my_breaks <- lubridate::with_tz(seq(min(score_df$datetime), max(score_df$datetime), by = "1 day"),"America/New_York")
-  my_label <- seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days")
+  my_label <- lubridate::with_tz(seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days"),"America/New_York")
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
   y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
