@@ -116,7 +116,7 @@ plot_temp_single_panel <- function(score_data,site_identifier, model_identifier,
 plot_depth <- function(score_df) {
   # Generate labels for plots
   my_breaks <- lubridate::with_tz(seq(min(score_df$datetime), max(score_df$datetime), by = "1 day"),"America/New_York")
-  my_label <- seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days")
+  my_label <- lubridate::with_tz(seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days"), "America/New_York")
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
@@ -153,7 +153,7 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
 
   # Labels for plot
   my_breaks <- lubridate::with_tz(seq(min(forecast_df$datetime), max(forecast_df$datetime), by = "1 day"),"America/New_York")
-  my_label <- seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days")
+  my_label <- lubridate::with_tz(seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days"), "America/New_York")
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
@@ -239,7 +239,7 @@ plot_ice <- function(forecast_df) {
 
   # Labels for plot
   my_breaks <- lubridate::with_tz(seq(min(forecast_df$datetime), max(forecast_df$datetime), by = "1 day"),"America/New_York")
-  my_label <- seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days")
+  my_label <- lubridate::with_tz(seq(lubridate::as_datetime(forecast_df$reference_datetime)[1], max(forecast_df$datetime), by = "5 days"),"America/New_York")
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
