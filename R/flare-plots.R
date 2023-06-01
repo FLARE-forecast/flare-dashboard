@@ -9,6 +9,11 @@ plot_temp <- function(score_df, depths = 0.5) {
   my_label <- lubridate::with_tz(seq(lubridate::as_datetime(score_df$reference_datetime)[1], max(score_df$datetime), by = "5 days"),"America/New_York")
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
+
+  my_labels <- as.Date(my_labels, format = "%Y-%m-%d")
+  my_labels <- as.character(my_labels)
+  my_labels[is.na(my_labels)] <- " "
+
   y_label <- expression(paste('Water temperature (',degree,'C)', sep = ""))
 
   # Generate the pot
@@ -120,6 +125,10 @@ plot_depth <- function(score_df) {
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
+  my_labels <- as.Date(my_labels, format = "%Y-%m-%d")
+  my_labels <- as.character(my_labels)
+  my_labels[is.na(my_labels)] <- " "
+
 
   # limits for axes
   depth_change <- ceiling((max(score_df$mean) - min(score_df$mean))*2)/2
@@ -157,6 +166,9 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
+  my_labels <- as.Date(my_labels, format = "%Y-%m-%d")
+  my_labels <- as.character(my_labels)
+  my_labels[is.na(my_labels)] <- " "
 
   # which depths should be evaluated to determine mixing
   if (!is.numeric(eval_depths)) {
@@ -243,6 +255,9 @@ plot_ice <- function(forecast_df) {
   my_labels <- as.character(my_breaks)
   my_labels[which(!(my_breaks %in% my_label))] <- " "
 
+  my_labels <- as.Date(my_labels, format = "%Y-%m-%d")
+  my_labels <- as.character(my_labels)
+  my_labels[is.na(my_labels)] <- " "
 
   forecast_df %>%
     mutate(ice = ifelse(prediction > 0, 1, 0)) %>%
