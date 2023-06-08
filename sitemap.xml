@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/FLARE-forecast/flare-dashboard/flare_status.html</loc>
-    <lastmod>2023-06-07T12:15:26.266Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/FLARE-forecast/flare-dashboard/neon.html</loc>
-    <lastmod>2023-06-07T12:28:12.115Z</lastmod>
-  </url>
-  <url>
     <loc>https://github.com/FLARE-forecast/flare-dashboard/alex.html</loc>
-    <lastmod>2023-06-07T12:33:34.634Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/FLARE-forecast/flare-dashboard/sunp.html</loc>
-    <lastmod>2023-06-07T12:42:48.668Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/FLARE-forecast/flare-dashboard/index.html</loc>
-    <lastmod>2023-06-07T12:42:57.012Z</lastmod>
+    <lastmod>2023-06-08T12:18:13.837Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/FLARE-forecast/flare-dashboard/fcre.html</loc>
-    <lastmod>2023-06-07T12:52:38.721Z</lastmod>
+    <lastmod>2023-06-08T12:26:45.369Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/FLARE-forecast/flare-dashboard/index.html</loc>
+    <lastmod>2023-06-08T12:26:55.013Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/FLARE-forecast/flare-dashboard/neon.html</loc>
+    <lastmod>2023-06-08T12:37:36.705Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/FLARE-forecast/flare-dashboard/flare_status.html</loc>
+    <lastmod>2023-06-08T12:37:41.613Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/FLARE-forecast/flare-dashboard/sunp.html</loc>
+    <lastmod>2023-06-08T12:45:17.984Z</lastmod>
   </url>
 </urlset>
