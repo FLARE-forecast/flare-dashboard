@@ -31,7 +31,7 @@ plot_temp <- function(score_df, depths = 0.5) {
     scale_x_continuous(breaks = my_breaks, labels = my_labels) +
     facet_wrap(~depth) +
     labs(y = y_label) +
-    ylim(c(-5,35)) +
+    ylim(c(-5,40)) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
     theme(text = element_text(size = 20))
