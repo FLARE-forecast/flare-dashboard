@@ -173,7 +173,16 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
   # which depths should be evaluated to determine mixing
   if (!is.numeric(eval_depths)) {
     # extracts the maximum and minimum in the forecast
-    max_depth <- max(forecast_df$depth, na.rm = T)
+      max_depth <- forecast_df |>
+        filter(variable == "temperature") |> 
+        select(datetime, parameter, depth, variable, prediction) |>   
+        mutate(is_na = ifelse(is.na(prediction), 1, 0)) |>
+        group_by(depth) |>
+        summarize(num_na = sum(is_na), .groups = "drop") |>
+        filter(num_na == 0) |> 
+        summarize(max = max(depth)) |> 
+        pull(max)
+  
     min_depth <- min(forecast_df$depth, na.rm = T)
   } else {
     # or uses the user specified values
