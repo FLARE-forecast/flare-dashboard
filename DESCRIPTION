@@ -22,8 +22,9 @@ Depends: tidyverse,
          httr,
          reactablefmtr
 Remotes:  
+    github::flare-forecast/flareVis,
     github::eco4cast/score4cast, 
     github::eco4cast/neon4cast, 
     github::eco4cast/vis4cast,
-    github::cboettig/minio,
-    github::flare-forecast/flareVis
+    github::cboettig/minio
+    
