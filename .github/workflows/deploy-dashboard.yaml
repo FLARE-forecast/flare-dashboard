@@ -20,20 +20,16 @@ jobs:
         with:
            fetch-depth: 0
            set-safe-directory: '*'
-   
-
+ 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.4.146
           
-      - name: install R CRAN packages
-        shell: Rscript {0} 
-        run: install.packages(c("scoringRules"))
-          
-      - name: install packages
+      - name: install deps
         env:
            GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-        run: R -e 'remotes::install_github("flare-forecast/flareVis")'
+        shell: Rscript {0}
+        run: remotes::install_deps(".", dep=TRUE)
           
       - name: Render
         run: |
