@@ -18,7 +18,9 @@ Depends: tidyverse,
          rLakeAnalyzer,
          decor,
          brio,
-         reactable
+         reactable,
+         httr,
+         reactablefmtr
 Remotes:  
     github::eco4cast/score4cast, 
     github::eco4cast/neon4cast, 
