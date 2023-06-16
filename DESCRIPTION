@@ -20,7 +20,9 @@ Depends: tidyverse,
          brio,
          reactable,
          httr,
-         reactablefmtr
+         reactablefmtr,
+         flareVis,
+         vis4cast
 Remotes:  
     github::flare-forecast/flareVis,
     github::eco4cast/score4cast, 
