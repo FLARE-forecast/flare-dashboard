@@ -1,0 +1,16 @@
+{
+  "hash": "0b82617ced3399e57422fe1a1fb86bc6",
+  "result": {
+    "markdown": "---\ntitle: \"Western Virginia Water Authority\"\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n## Most recent forecasts\n\nBelow are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.\n\n::: panel-tabset\n## Falling Creek Reservoir\n\n\n::: {.cell}\n\n:::\n\n\nThe most recent forecast is from 2023-06-15 20:00:00 (Eastern U.S. time).\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/fcre-temp-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/fcre-mixing-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/fcre-ice-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n## Beaver Dam Reservoir\n\n\n::: {.cell}\n\n:::\n\n\nThe most recent forecast is from 2023-06-15 20:00:00 (Eastern U.S. time).\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/unnamed-chunk-9-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/bvre-mixing-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/bvre-ice-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n\n## Carvins Cove Reservoir\n\n\n::: {.cell}\n\n:::\n\n\nThe most recent forecast is from 2023-06-15 20:00:00 (Eastern U.S. time).\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/unnamed-chunk-12-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/ccre-mixing-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](wvwa_files/figure-html/ccre-ice-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n:::\n",
+    "supporting": [
+      "wvwa_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
