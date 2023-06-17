@@ -1,0 +1,16 @@
+{
+  "hash": "18a00077881864aaf04c14c0955eea48",
+  "result": {
+    "markdown": "---\ntitle: \"University of Western Australia\"\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n## Most recent forecasts\n\nLake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water). The forecasts are generated in collaboration with Matt Hipsey's research group at the University of Western Australia.\n\n::: panel-tabset\n## Lake Alexandrina\n\n\n::: {.cell}\n\n:::\n\n\nThe most recent forecast is from 2023-06-15 20:00:00 (Eastern U.S. time).\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](alex_files/figure-html/alex-temp-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](alex_files/figure-html/alex-mixing-1.png){width=672}\n:::\n:::\n\n:::\n",
+    "supporting": [
+      "alex_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

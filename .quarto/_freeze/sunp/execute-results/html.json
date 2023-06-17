@@ -1,0 +1,16 @@
+{
+  "hash": "7451ff9669aaf743104b0081c91138bd",
+  "result": {
+    "markdown": "---\ntitle: \"Lake Sunapee Protective Association\"\n---\n\n\n\n::: {.cell}\n\n:::\n\n\n## Most recent forecasts\n\nBelow are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.\n\n::: panel-tabset\n## Lake Sunapee\n\n\n::: {.cell}\n\n:::\n\n\nThe most recent forecast is from 2023-06-15 20:00:00 (Eastern U.S. time).\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](sunp_files/figure-html/sunp-temp-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](sunp_files/figure-html/sunp-mixing-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](sunp_files/figure-html/sunp-ice-1.png){width=672}\n:::\n:::\n\n:::\n",
+    "supporting": [
+      "sunp_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
