@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
 library(ggiraph)
 library(patchwork)
 library(tidyverse)
-library(neon4cast)
+#library(neon4cast)
 library(score4cast)
 
 
@@ -87,8 +87,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("BARC"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -148,8 +147,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("CRAM"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect()
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -207,8 +205,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("LIRO"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -294,8 +291,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("PRLA"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -356,8 +352,7 @@ depth_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "depth",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_depth(depth_scores) 
@@ -370,8 +365,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("PRPO"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -446,8 +440,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("SUGG"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
@@ -508,8 +501,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast) |>
   filter(variable == "temperature",
          site_id %in% c("TOOK"),
          reference_datetime == most_recent,
-         model_id == forecast_flare_model,
-         !is.na(prediction)) |> 
+         model_id == forecast_flare_model) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
