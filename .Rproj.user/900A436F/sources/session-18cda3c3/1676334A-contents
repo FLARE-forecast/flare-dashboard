@@ -1,0 +1,70 @@
+---
+title: "University of Western Australia"
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r setup}
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+
+
+library(thematic)
+thematic_rmd(bg="white", fg="black", accent="blue")
+
+source("R/flare-plots.R")
+source("R/ignore_sigpipes.R")
+
+
+```
+
+## Most recent forecasts
+
+Lake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water). The forecasts are generated in collaboration with Matt Hipsey's research group at the University of Western Australia.
+
+::: panel-tabset
+## Lake Alexandrina
+
+```{r}
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
+  filter(site_id %in% c("ALEX")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "temperature",
+         site_id %in% c("ALEX"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+
+```{r alex-temp}
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "ALEX")
+
+plot_temp(df_insitu_scores_lake, depths = c(0.5,5)) 
+```
+
+```{r alex-mixing}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+  filter(variable == "temperature",
+         site_id %in% c("ALEX"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
+```
+:::

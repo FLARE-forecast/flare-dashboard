@@ -1,0 +1,123 @@
+---
+title: "Lake Sunapee Protective Association"
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+```
+
+```{r setup}
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+
+library(remotes)
+
+
+library(thematic)
+thematic_rmd(bg="white", fg="black", accent="blue")
+
+source("R/flare-plots.R")
+source("R/ignore_sigpipes.R")
+
+
+```
+
+## Most recent forecasts
+
+Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.
+
+::: panel-tabset
+## Lake Sunapee
+
+```{r}
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+## define function arguments
+site <- 'sunp'
+model <- 'test_runS3'
+depths <- c(0,5,10)
+lake_name <- 'Lake Sunapee'
+y_limits <- c(-5,30)
+
+## do data subsetting
+# find most recent forecast run date for the model and site
+most_recent <-  arrow::open_dataset(s3_score) |>
+  filter(site_id %in% site,
+         model_id %in% model) |>
+  summarize(max = max(reference_datetime)) |>
+  collect() |>
+  pull()
+
+# subset and collect data based off of site, model, depth, and reference datetime
+score_df <- arrow::open_dataset(s3_score) |>
+  filter(variable == "temperature",
+         depth %in% depths,
+         site_id %in% site,
+         model_id %in% model,
+         reference_datetime == most_recent) |>
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+
+```{r sunp-temp}
+
+flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site)
+
+```
+
+```{r sunp-error, eval = FALSE}
+df_horizon <- arrow::open_dataset(s3, unify_schemas = TRUE) |> 
+  filter(variable == "temperature",
+         site_id == "sunp",
+         depth %in% c(1.0, 10.0),
+         horizon %in% c(2,7,14)) |> 
+  dplyr::collect()
+
+df_horizon |> 
+  ggplot(aes(x = observation, y = mean, color = horizon)) +
+  geom_point() +
+  geom_smooth(method = "lm") + 
+  labs(x = "observed temperature", y = "forecasted temperature") +
+  theme_bw()
+
+
+```
+
+```{r sunp-depth, eval=F}
+# depth plot
+depth_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "depth",
+         site_id %in% c("sunp"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+plot_depth(depth_scores) 
+```
+
+```{r sunp-mixing}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+  filter(variable == "temperature",
+         site_id %in% c("sunp"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 10), use_density = T, threshold = 0.1)
+
+```
+
+```{r sunp-ice}
+# Ice plot
+ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+  filter(variable == "ice_thickness",
+         site_id %in% c("sunp"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+plot_ice(ice_forecasts)
+```
+:::

@@ -1,0 +1,43 @@
+---
+title: "Home"
+---
+
+Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!
+
+This page was last updated on `r lubridate::with_tz(Sys.time(), tzone = "America/New_York")` (Eastern U.S. time).
+
+This dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.
+
+### FLARE sites
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE, include=FALSE)
+```
+
+```{r, setup}
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+library(thematic)
+thematic_rmd(bg="white", fg="black", accent="blue")
+```
+
+```{r}
+library(sf)
+library(tmap)
+library(jsonlite)
+library(dplyr)
+
+neon <- sf::st_read("sites.json")
+```
+
+```{r fig.height=5, fig.width=5, echo=FALSE, include=TRUE}
+tmap::tmap_mode("view")
+neon  |> #-149.610636, 68.630692
+  tm_shape(bbox=c(-260,-35.436808, -74, 68.630692)) + 
+  tm_bubbles(col="Partner", popup.vars = c("site_id"), jitter =TRUE) 
+```
+
+This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.

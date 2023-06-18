@@ -1,0 +1,11 @@
+"0","# chance of being mixed"
+"0","temperature_forecast <- arrow::open_dataset(s3_forecast) |> "
+"0","  filter(variable == ""temperature"","
+"0","         site_id %in% c(""ccre""),"
+"0","         reference_datetime == most_recent,"
+"0","         !is.na(prediction)) |> "
+"0","  dplyr::collect() "
+"0",""
+"0","plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)"
+"2","using a 0.1 kg/m3 density difference to define mixing
+"

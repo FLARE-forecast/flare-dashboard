@@ -1,0 +1,7 @@
+"0","most_recent <-  arrow::open_dataset(s3_score, unify_schemas = TRUE)
+"
+"1","[1m[33mError[39m in `arrow::open_dataset()`:[22m
+[33m![39m Invalid: Unable to merge: Field observation has incompatible types: double vs bool
+Backtrace:
+[90m 1. [39m[1m[94marrow::open_dataset([39m[22ms3_score, unify_schemas = TRUE[1m[94m)[39m[22m
+"

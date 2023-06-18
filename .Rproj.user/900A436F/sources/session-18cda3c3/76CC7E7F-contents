@@ -1,0 +1,46 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "FLARE"
+  page-navigation: true
+  repo-url: https://github.com/flare-forecast/flare-dashboard
+  repo-actions: [edit, issue]
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - href: https://flare-forecast.org
+        text: About
+        icon: cpu
+      - href: wvwa.qmd
+        icon: droplet
+      - href: sunp.qmd
+        icon: droplet
+      - href: alex.qmd
+        icon: droplet
+      - href: neon.qmd
+        icon: droplet
+      - href: status.qmd
+        icon: clipboard-pulse
+
+  page-footer:
+    left: "CC-BY"
+    right:
+      - icon: github
+        href: https://github.com/flare-forecast/flare-dashboard
+
+format:
+  html:
+    theme: [yeti, custom.scss]
+    css: styles.css
+    title-block-style: default
+    title-block-banner: "img/carvins_justwater.png"
+#    title-block-banner-color: white
+    page-layout: full
+    toc: true
+
+editor: visual
+

@@ -1,0 +1,5 @@
+"0",""
+"0","df_insitu_scores_lake <- df_insitu_scores |> "
+"0","  filter(site_id == ""bvre"")"
+"0",""
+"0","plot_temp(df_insitu_scores_lake, depths = c(1,8))  "
