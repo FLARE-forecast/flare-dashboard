@@ -1,4 +1,0 @@
-"0","plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_density = T, threshold = 0.1)
-"
-"2","using a 0.1 kg/m3 density difference to define mixing
-"

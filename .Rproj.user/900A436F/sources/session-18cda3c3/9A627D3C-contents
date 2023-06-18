@@ -1,3 +1,0 @@
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet/site_id=fcre/model_id=test_runS3", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> collect()
