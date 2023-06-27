@@ -5,7 +5,7 @@ project:
 website:
   title: "FLARE"
   page-navigation: true
-  repo-url: https://github.com/rqthomas/flare-dashboard
+  repo-url: https://github.com/flare-forecast/flare-dashboard
   repo-actions: [edit, issue]
 
   navbar:
@@ -15,7 +15,7 @@ website:
       - href: https://flare-forecast.org
         text: About
         icon: cpu
-      - href: fcre.qmd
+      - href: wvwa.qmd
         icon: droplet
       - href: sunp.qmd
         icon: droplet
@@ -23,14 +23,14 @@ website:
         icon: droplet
       - href: neon.qmd
         icon: droplet
-      - href: flare_status.qmd
+      - href: status.qmd
         icon: clipboard-pulse
 
   page-footer:
     left: "CC-BY"
     right:
       - icon: github
-        href: https://github.com/rqthomas/flare-dashboard
+        href: https://github.com/flare-forecast/flare-dashboard
 
 format:
   html:

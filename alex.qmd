@@ -62,8 +62,7 @@ plot_temp(df_insitu_scores_lake, depths = c(0.5,5))
 temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
          site_id %in% c("ALEX"),
-         reference_datetime == most_recent,
-         !is.na(prediction)) |> 
+         reference_datetime == most_recent) |> 
   dplyr::collect() 
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
