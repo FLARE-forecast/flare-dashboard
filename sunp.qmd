@@ -34,14 +34,14 @@ Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake
 
 ```{r}
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+#s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 ## define function arguments
 site <- 'sunp'
 model <- 'test_runS3'
 depths <- c(0,5,10)
 lake_name <- 'Lake Sunapee'
-y_limits <- c(-5,30)
+y_limits <- c(-5,35)
 
 ## do data subsetting
 # find most recent forecast run date for the model and site
@@ -58,15 +58,31 @@ score_df <- arrow::open_dataset(s3_score) |>
          depth %in% depths,
          site_id %in% site,
          model_id %in% model,
+         horizon >= 0,
          reference_datetime == most_recent) |>
   dplyr::collect()
+
+
+## extract observational data to use 
+obs_dates_grab <- as.Date(most_recent) - lubridate::days(5)
+
+obs_df <- arrow::open_dataset(s3_score) |>
+  filter(variable == "temperature",
+         depth %in% depths,
+         site_id %in% site,
+         model_id %in% model,
+         reference_datetime >= obs_dates_grab, 
+         reference_datetime <= most_recent) |> 
+  dplyr::collect() |> 
+  drop_na(observation) |> 
+  distinct(reference_datetime, depth, .keep_all = TRUE)
 ```
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
 ```{r sunp-temp}
 
-flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site)
+flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site, obs_hist = obs_df)
 
 ```
 
