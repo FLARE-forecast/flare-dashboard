@@ -34,7 +34,7 @@ Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake
 
 ```{r}
 s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-#s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 ## define function arguments
 site <- 'sunp'
@@ -80,11 +80,13 @@ obs_df <- arrow::open_dataset(s3_score) |>
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r sunp-temp}
-
+```{r sunp-temp, fit.width = 10, fig.height= 6}
+#, fit.width = 10, fig.height= 6
 flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site, obs_hist = obs_df)
 
 ```
+
+Points represent sensor observations of water temperature. Lines represents the mean prediction from the forecast ensembles, or the most likely outcome.\n The shaded areas represent the 90% confidence interval of the forecast, or the possible range of outcomes based on the forecast.
 
 ```{r sunp-error, eval = FALSE}
 df_horizon <- arrow::open_dataset(s3, unify_schemas = TRUE) |> 
