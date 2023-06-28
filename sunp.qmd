@@ -68,7 +68,7 @@ obs_dates_grab <- as.Date(most_recent) - lubridate::days(5)
 
 obs_df <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
-         depth %in% depths,
+         depth %in% c(1,5,10),
          site_id %in% site,
          model_id %in% model,
          reference_datetime >= obs_dates_grab, 
@@ -76,6 +76,8 @@ obs_df <- arrow::open_dataset(s3_score) |>
   dplyr::collect() |> 
   drop_na(observation) |> 
   distinct(reference_datetime, depth, .keep_all = TRUE)
+
+obs_df$depth <- ifelse(obs_df$depth == 1, 0, obs_df$depth) ## force 1m obs to be 0m so that it matches scores depth
 ```
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
