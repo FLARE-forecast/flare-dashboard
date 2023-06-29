@@ -82,8 +82,8 @@ obs_df$depth <- ifelse(obs_df$depth == 1, 0, obs_df$depth) ## force 1m obs to be
 
 The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
 
-```{r sunp-temp, fit.width = 10, fig.height= 6}
-#, fit.width = 10, fig.height= 6
+```{r sunp-temp, fig.width = 10, fig.height= 6}
+#, fig.width = 10, fig.height= 6
 flareVis::plot_temp_single_panel(data = score_df, depths = depths, ylims = y_limits, site_name = site, obs_hist = obs_df)
 
 ```
