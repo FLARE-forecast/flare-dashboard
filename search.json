@@ -1,38 +1,24 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2023-06-29\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+  },
+  {
     "objectID": "neon.html",
     "href": "neon.html",
     "title": "National Ecological Observatory Network",
     "section": "",
-    "text": "The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years. We generate forecast for the seven lakes that are monitored by NEON. These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs LakeToolik Lake\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time)."
+    "text": "The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years. We generate forecast for the seven lakes that are monitored by NEON. These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs LakeToolik Lake\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time)."
   },
   {
     "objectID": "neon.html#most-recent-forecasts",
     "href": "neon.html#most-recent-forecasts",
     "title": "National Ecological Observatory Network",
     "section": "",
-    "text": "The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years. We generate forecast for the seven lakes that are monitored by NEON. These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs LakeToolik Lake\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time)."
-  },
-  {
-    "objectID": "wvwa.html",
-    "href": "wvwa.html",
-    "title": "Western Virginia Water Authority",
-    "section": "",
-    "text": "Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time)."
-  },
-  {
-    "objectID": "wvwa.html#most-recent-forecasts",
-    "href": "wvwa.html#most-recent-forecasts",
-    "title": "Western Virginia Water Authority",
-    "section": "",
-    "text": "Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time)."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2023-06-28\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years. We generate forecast for the seven lakes that are monitored by NEON. These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.\n\nBarco LakeCrampton LakeLittle Rock LakePrairie LakePrairie PotholeSuggs LakeToolik Lake\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time)."
   },
   {
     "objectID": "alex.html",
@@ -49,17 +35,31 @@
     "text": "Lake Alexandrina is located in South Australia and is monitored by the state water authority (SA Water). The forecasts are generated in collaboration with Matt Hipsey’s research group at the University of Western Australia.\n\nLake Alexandrina\n\n\nThe most recent forecast is from 2023-06-18 20:00:00 (Eastern U.S. time)."
   },
   {
+    "objectID": "wvwa.html",
+    "href": "wvwa.html",
+    "title": "Western Virginia Water Authority",
+    "section": "",
+    "text": "Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time)."
+  },
+  {
+    "objectID": "wvwa.html#most-recent-forecasts",
+    "href": "wvwa.html#most-recent-forecasts",
+    "title": "Western Virginia Water Authority",
+    "section": "",
+    "text": "Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.\n\nFalling Creek ReservoirBeaver Dam ReservoirCarvins Cove Reservoir\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time)."
+  },
+  {
     "objectID": "sunp.html",
     "href": "sunp.html",
     "title": "Lake Sunapee Protective Association",
     "section": "",
-    "text": "Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.\n\nLake Sunapee\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\nPoints represent sensor observations of water temperature. Lines represents the mean prediction from the forecast ensembles, or the most likely outcome.The shaded areas represent the 90% confidence interval of the forecast, or the possible range of outcomes based on the forecast."
+    "text": "Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.\n\nLake Sunapee\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\nPoints represent sensor observations of water temperature. Lines represents the mean prediction from the forecast ensembles, or the most likely outcome.The shaded areas represent the 90% confidence interval of the forecast, or the possible range of outcomes based on the forecast."
   },
   {
     "objectID": "sunp.html#most-recent-forecasts",
     "href": "sunp.html#most-recent-forecasts",
     "title": "Lake Sunapee Protective Association",
     "section": "",
-    "text": "Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.\n\nLake Sunapee\n\n\nThe most recent forecast is from 2023-06-27 20:00:00 (Eastern U.S. time).\n\n\n\n\n\nPoints represent sensor observations of water temperature. Lines represents the mean prediction from the forecast ensembles, or the most likely outcome.The shaded areas represent the 90% confidence interval of the forecast, or the possible range of outcomes based on the forecast."
+    "text": "Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.\n\nLake Sunapee\n\n\nThe most recent forecast is from 2023-06-28 20:00:00 (Eastern U.S. time).\n\n\n\n\n\nPoints represent sensor observations of water temperature. Lines represents the mean prediction from the forecast ensembles, or the most likely outcome.The shaded areas represent the 90% confidence interval of the forecast, or the possible range of outcomes based on the forecast."
   }
 ]
