@@ -23,6 +23,8 @@ website:
         icon: droplet
       - href: neon.qmd
         icon: droplet
+      - href: ntl.qmd
+        icon: droplet
       - href: status.qmd
         icon: clipboard-pulse
 
