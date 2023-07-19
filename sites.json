@@ -14,6 +14,10 @@
 { "type": "Feature", "properties": { "site_id": "Prairie Pothole","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -99.25055, 47.12999 ] } },
 { "type": "Feature", "properties": { "site_id": "Suggs Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -82.01617, 29.68705] } },
  { "type": "Feature", "properties": { "site_id": "Lake Alexandrina","Partner": "UWA", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -220.831, -35.436808] } },
-  { "type": "Feature", "properties": { "site_id": "Toolik Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-149.610636, 68.630692] } }
+  { "type": "Feature", "properties": { "site_id": "Toolik Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-149.610636, 68.630692] } },
+  { "type": "Feature", "properties": { "site_id": "Sparkling Lake","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.70101667, 46.00682222] } },
+  { "type": "Feature", "properties": { "site_id": "Trout Lake","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.668446, 46.028646] } },
+    { "type": "Feature", "properties": { "site_id": "Trout Bog","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.686181, 46.041137] } },
+        { "type": "Feature", "properties": { "site_id": "Lake Mendota","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.415224, 43.106860] } }
 ]
 }
