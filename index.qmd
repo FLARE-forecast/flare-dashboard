@@ -37,7 +37,7 @@ neon <- sf::st_read("sites.json")
 tmap::tmap_mode("view")
 neon  |> #-149.610636, 68.630692
   tm_shape(bbox=c(-260,-35.436808, -74, 68.630692)) + 
-  tm_bubbles(col="Partner", popup.vars = c("site_id"), jitter =TRUE) 
+  tm_bubbles(col="Partner", size = 1, popup.vars = c("site_id"), jitter =TRUE) 
 ```
 
 This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
