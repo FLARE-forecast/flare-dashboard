@@ -5,7 +5,23 @@ title: "North Temperate Lake - LTER"
 ```{r, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
 ```
----
+
+
+```{r setup}
+library(ggiraph)
+library(patchwork)
+library(tidyverse)
+library(neon4cast)
+library(score4cast)
+
+
+library(thematic)
+thematic_rmd(bg="white", fg="black", accent="blue")
+
+source("R/flare-plots.R")
+source("R/ignore_sigpipes.R")
+```
+
 
 ## Most Recent Forecasts 
 
@@ -14,8 +30,66 @@ The North Temperate Lakes Long Term Ecological Research (NTL-LTER) program condu
 
 ::: panel-tabset
 
-## Trout Lake
-
 ## Sparkling Lake
 
+```{r}
+s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+  
+most_recent <-  arrow::open_dataset(s3_score) |> 
+  filter(site_id %in% c("SPLK")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3_score) |>
+  filter(variable == "temperature",
+         # depth %in% c(0.5),
+         site_id %in% c("SPLK"),
+         reference_datetime == most_recent) |>
+  dplyr::collect()
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+
+```{r splk-temp}
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "SPLK")
+
+plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
+```
+
+```{r splk-depth, eval=F}
+# depth plot
+depth_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "depth",
+         site_id %in% c("SPLK"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+plot_depth(depth_scores) 
+```
+
+```{r splk-mixing}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = FALSE) |> 
+  filter(variable == "temperature",
+         site_id %in% c("SPLK"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
+
+```
+
+```{r splk-ice}
+# Ice plot
+ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+  filter(variable == "ice_thickness",
+         site_id %in% c("SPLK"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+plot_ice(ice_forecasts)
+```
 :::
