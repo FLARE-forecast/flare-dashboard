@@ -27,7 +27,7 @@ source("R/ignore_sigpipes.R")
 
 The [North Temperate Lakes Long-Term Ecological Research (NTL-LTER)](https://lter.limnology.wisc.edu) program conducts and facilitates long-term ecological research on Wisconsin lakes. Housed on both the University of Wisconsin-Madison campus and at Trout Lake Station, NTL is part of the larger LTER network funded by the U.S. National Science Foundation since 1981.
 
-NTL forecasts are generated in collaboration with Noah Lottig and Paul Schramm from the UW Center for Limnology - Trout Lake Research Station.
+NTL forecasts are generated in collaboration with scientists from NTL at the UW Center for Limnology (Noah Lottig, Paul Schramm, and Paul Hanson).
 
 ::: panel-tabset
 
