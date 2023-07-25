@@ -29,7 +29,9 @@ source("R/ignore_sigpipes.R")
 
 ## Most recent forecasts
 
-Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.
+Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.  
+
+Forecasts are developed in [partnership with WVWA](https://video.vt.edu/media/Researchers%20craft%20unique%20system%20for%20predicting%20water%20quality%20in%20reservoir/1_9ok8r6ty).  More information about past performance at Falling Creek Reservoir can be found in [Thomas et al. 2020](https://doi.org/10.1029/2019WR026138)
 
 ::: panel-tabset
 ## Falling Creek Reservoir
