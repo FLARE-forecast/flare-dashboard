@@ -27,7 +27,9 @@ source("R/ignore_sigpipes.R")
 
 ## Most recent forecasts
 
-Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association.
+Below are forecasts for Lake Sunapee, NH. Lake Sunapee is the fifth largest lake in New Hampshire. The forecasts are for the location of the bouy that is maintained by the Lake Sunapee Protective Association (LPSA).
+
+Forecasts are generated in collaboration with the LPSA and Kathleen Weathers from the Cary Institute for Ecosystem Studies.
 
 ::: panel-tabset
 ## Lake Sunapee
