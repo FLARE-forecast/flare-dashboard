@@ -25,7 +25,7 @@ website:
         icon: droplet
       - href: ntl.qmd
         icon: droplet
-      - href: feaa.qmd
+      - href: feea.qmd
         icon: droplet
       - href: status.qmd
         icon: clipboard-pulse
