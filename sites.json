@@ -18,6 +18,7 @@
   { "type": "Feature", "properties": { "site_id": "Sparkling Lake","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.70101667, 46.00682222] } },
   { "type": "Feature", "properties": { "site_id": "Trout Lake","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.668446, 46.028646] } },
     { "type": "Feature", "properties": { "site_id": "Trout Bog","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.686181, 46.041137] } },
-        { "type": "Feature", "properties": { "site_id": "Lake Mendota","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.415224, 43.106860] } }
+        { "type": "Feature", "properties": { "site_id": "Lake Mendota","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.415224, 43.106860] } },
+       { "type": "Feature", "properties": { "site_id": "Lake Feeagh","Partner": "InventWater", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-9.5, 53.9] } }
 ]
 }
