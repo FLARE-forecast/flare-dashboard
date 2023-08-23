@@ -29,15 +29,20 @@ library(sf)
 library(tmap)
 library(jsonlite)
 library(dplyr)
+library(leaflet)
 
 neon <- sf::st_read("sites.json")
 ```
 
-```{r fig.height=5, fig.width=5, echo=FALSE, include=TRUE}
-tmap::tmap_mode("view")
-neon  |> #-149.610636, 68.630692
-  tm_shape(bbox=c(-260,-35.436808, 0, 68.630692)) + 
-  tm_bubbles(col="Partner", size = 0.2, popup.vars = c("site_id"), jitter =TRUE) 
+```{r fig.height=5, fig.width=5, echo=FALSE, include=TRUE, }
+leaflet() %>%
+  #setView(lat = 37.2296, lng = -100, zoom=2) %>%
+  addTiles(group="OSM") %>%
+  addProviderTiles(providers$Esri.WorldTopoMap, group="Topo Map") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group="Imagery") %>%
+  addLayersControl(baseGroups=c('OSM', 'Topo Map','Imagery')) |> 
+  addMarkers(data  = neon, popup=~as.character(site_id), group = ~as.character(Partner), clusterOptions = markerClusterOptions())
+
 ```
 
 This material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
