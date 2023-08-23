@@ -22,7 +22,8 @@ Depends: tidyverse,
          httr,
          reactablefmtr,
          flareVis,
-         vis4cast
+         vis4cast,
+         leaflet
 Remotes:  
     github::flare-forecast/flareVis,
     github::eco4cast/score4cast, 
