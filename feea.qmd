@@ -52,7 +52,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "feea")
 
-plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
+plot_temp(df_insitu_scores_lake, depths = c(1,20)) 
 ```
 
 ```{r feea-depth, eval=F}
@@ -74,7 +74,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = FALSE) 
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
-plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_density = T, threshold = 0.1)
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 20), use_density = T, threshold = 0.1)
 
 ```
 
