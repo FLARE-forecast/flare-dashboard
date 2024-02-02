@@ -29,9 +29,9 @@ source("R/ignore_sigpipes.R")
 
 ## Most recent forecasts
 
-Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.  
+Below are forecasts for three reservoirs managed by the Western Virginia Water Authority (WVWA). The WVWA is the primary supplier of drinking water to the Roanoke, VA region.
 
-Forecasts are developed in [partnership with WVWA](https://video.vt.edu/media/Researchers%20craft%20unique%20system%20for%20predicting%20water%20quality%20in%20reservoir/1_9ok8r6ty).  More information about past performance at Falling Creek Reservoir can be found in [Thomas et al. 2020](https://doi.org/10.1029/2019WR026138)
+Forecasts are developed in [partnership with WVWA](https://video.vt.edu/media/Researchers%20craft%20unique%20system%20for%20predicting%20water%20quality%20in%20reservoir/1_9ok8r6ty). More information about past performance at Falling Creek Reservoir can be found in [Thomas et al. 2020](https://doi.org/10.1029/2019WR026138)
 
 ::: panel-tabset
 ## Falling Creek Reservoir
@@ -41,7 +41,7 @@ s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.
 s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("fcre")) |> 
+  filter(site_id %in% c("fcre"), model_id %in% c('test_runs3')) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -50,6 +50,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("fcre"),
+         model_id %in% c('test_runs3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 ```
@@ -68,6 +69,7 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("fcre"),
+         model_id %in% c('test_runs3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -79,6 +81,7 @@ plot_depth(depth_scores)
 temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = FALSE) |> 
   filter(variable == "temperature",
          site_id %in% c("fcre"),
+         model_id %in% c('test_runs3'),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
@@ -91,6 +94,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_densi
 ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
          site_id %in% c("fcre"),
+         model_id %in% c('test_runs3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -103,7 +107,8 @@ plot_ice(ice_forecasts)
 df <- arrow::open_dataset(s3_score) |> 
   filter(variable == "temperature",
          depth %in% c(1.0),
-         site_id == "fcre") |> 
+         site_id == "fcre",
+         model_id %in% c('test_runs3')) |> 
   dplyr::collect() 
 
 bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
@@ -125,7 +130,8 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
 s3_score <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
 
 full_forecast <- arrow::open_dataset(s3_score) |> 
-  filter(site_id == "fcre") |> 
+  filter(site_id == "fcre", 
+         model_id %in% c('test_runs3')) |> 
   distinct(reference_datetime) |> 
   collect() |> 
   filter(lubridate::as_date(reference_datetime) >= Sys.Date() - lubridate::days(16)) |> 
@@ -136,7 +142,8 @@ df_insitu_forecast <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          depth == 1.0,
          reference_datetime == full_forecast,
-         site_id == "fcre") |> 
+         site_id == "fcre", 
+         model_id %in% c('test_runs3')) |> 
   select(site_id, reference_datetime, datetime, family, parameter, variable, prediction) |> 
   dplyr::collect()  |> 
   mutate(reference_datetime = lubridate::as_datetime(reference_datetime),
