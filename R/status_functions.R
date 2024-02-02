@@ -20,9 +20,14 @@ health_check_table <- function(){
   hc_latest <- c()
 
   for (i in seq.int(1,length(check_parsed))){
-    hc_names[i] <- check_parsed[[i]][[1]] # json objects 1,7,9 are name, status, and last ping
-    hc_status[i] <- check_parsed[[i]][[7]]
-    hc_latest[i] <- check_parsed[[i]][[9]]
+    print(check_parsed[[i]]$slug)
+    if (check_parsed[[i]]$n_pings == 0){
+      print('Job has no pings, skipping...')
+      next()
+    }
+    hc_names[i] <- check_parsed[[i]]$name # json objects 1,7,9 are name, status, and last ping
+    hc_status[i] <- check_parsed[[i]]$status
+    hc_latest[i] <- check_parsed[[i]]$last_ping
   }
 
   check_df <- data.frame(hc_names,hc_status,hc_latest)
