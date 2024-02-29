@@ -20,21 +20,21 @@ thematic_rmd(bg="white", fg="black", accent="blue")
 source("R/flare-plots.R")
 source("R/ignore_sigpipes.R")
 
-forecast_flare_model <- 'test_runS3'
+forecast_flare_model <- 'glm_flare_v1'
 ```
 
 ## Most recent forecasts
 
 The National Ecological Observatory Network (NEON) is a U.S. National Science Foundation-funded project to monitor 81 ecosystems across the U.S. using standardized measurements over the next 30 years. We generate forecasts for the seven lakes that are monitored by NEON. These lakes range from hot humid (Florida) to cold tundra (Alaska) environments.
 
-Forecasts of NEON lakes are contributed to the [NEON Ecological Forecasting Challenge](https://doi.org/10.1002/fee.2616), hosted by the [Ecological Forecasting Initiative Research Coordination Network](https://ecoforecast.org/rcn/).  More information about past performance at NEON Lakes can be found in [Thomas et al. 2023](https://doi.org/10.1002/fee.2623).
+Forecasts of NEON lakes are contributed to the [NEON Ecological Forecasting Challenge](https://doi.org/10.1002/fee.2616), hosted by the [Ecological Forecasting Initiative Research Coordination Network](https://ecoforecast.org/rcn/). More information about past performance at NEON Lakes can be found in [Thomas et al. 2023](https://doi.org/10.1002/fee.2623).
 
 ::: panel-tabset
 ## Barco Lake
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("BARC"),
@@ -99,8 +99,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ## Crampton Lake
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("CRAM"),
@@ -171,9 +171,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ## Little Rock Lake
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-  
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("LIRO"),
          model_id == forecast_flare_model) |> 
@@ -244,8 +244,8 @@ plot_ice(ice_forecasts)
 ## Prairie Lake
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRLA"),
@@ -316,8 +316,8 @@ plot_ice(ice_forecasts)
 ## Prairie Pothole
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("PRPO"),
@@ -391,8 +391,8 @@ plot_ice(ice_forecasts)
 ## Suggs Lake
 
 ```{r }
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("SUGG"),
@@ -452,8 +452,8 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 ## Toolik Lake
 
 ```{r }
-s3_score <- arrow::s3_bucket(bucket = "scores/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "forecasts/parquet", endpoint_override = "s3.flare-forecast.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("TOOK"),
