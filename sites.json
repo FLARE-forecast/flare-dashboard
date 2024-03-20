@@ -16,6 +16,7 @@
 { "type": "Feature", "properties": { "site_id": "Lake Alexandrina","Partner": "UWA", "n": 5 }, "geometry": { "type": "Point", "coordinates": [ -220.831, -35.436808] } },
 { "type": "Feature", "properties": { "site_id": "Toolik Lake","Partner": "NEON", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-149.610636, 68.630692] } },
 { "type": "Feature", "properties": { "site_id": "Sparkling Lake","Partner": "NTL-LTER", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-89.70101667, 46.00682222] } },
+{ "type": "Feature", "properties": { "site_id": "Canning River","Partner": "UWA", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-244.0660794, -32.0283348] } },
 { "type": "Feature", "properties": { "site_id": "Lake Feeagh","Partner": "InventWater", "n": 5 }, "geometry": { "type": "Point", "coordinates": [-9.5, 53.9] } }
 ]
 }
