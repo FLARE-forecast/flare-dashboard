@@ -34,7 +34,8 @@ plot_temp <- function(score_df, depths = 0.5) {
     ylim(c(-5,40)) +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
-    theme(text = element_text(size = 20))
+    theme(text = element_text(size = 20)) +
+    labs(caption = "Warning: Experimental Forecast")
 }
 
 
@@ -150,7 +151,8 @@ plot_depth <- function(score_df) {
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
     theme(text = element_text(size = 20),
-          panel.grid.minor = element_blank())
+          panel.grid.minor = element_blank()) +
+    labs(caption = "Warning: Experimental Forecast")
 }
 
 # Plot the % chance of being mixed - needs ensemble forecast
@@ -174,15 +176,15 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
   if (!is.numeric(eval_depths)) {
     # extracts the maximum and minimum in the forecast
       max_depth <- forecast_df |>
-        filter(variable == "temperature") |> 
-        select(datetime, parameter, depth, variable, prediction) |>   
+        filter(variable == "temperature") |>
+        select(datetime, parameter, depth, variable, prediction) |>
         mutate(is_na = ifelse(is.na(prediction), 1, 0)) |>
         group_by(depth) |>
         summarize(num_na = sum(is_na), .groups = "drop") |>
-        filter(num_na == 0) |> 
-        summarize(max = max(depth)) |> 
+        filter(num_na == 0) |>
+        summarize(max = max(depth)) |>
         pull(max)
-  
+
     min_depth <- min(forecast_df$depth, na.rm = T)
   } else {
     # or uses the user specified values
@@ -215,7 +217,8 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
       theme(text = element_text(size = 20),
             plot.caption = element_text(size = 12),
-            panel.grid.minor = element_blank())
+            panel.grid.minor = element_blank()) +
+      labs(caption = "Warning: Experimental Forecast")
   }
 
 
@@ -246,7 +249,8 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
       theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
       theme(text = element_text(size = 20),
             plot.caption = element_text(size = 12),
-            panel.grid.minor = element_blank())
+            panel.grid.minor = element_blank()) +
+      labs(caption = "Warning: Experimental Forecast")
   }
 
 
@@ -282,7 +286,8 @@ plot_ice <- function(forecast_df) {
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
     theme(text = element_text(size = 20),
           plot.caption = element_text(size = 12),
-          panel.grid.minor = element_blank())
+          panel.grid.minor = element_blank()) +
+    labs(caption = "Warning: Experimental Forecast")
 }
 
 
