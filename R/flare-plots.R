@@ -35,7 +35,7 @@ plot_temp <- function(score_df, depths = 0.5) {
     theme_bw() +
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
     theme(text = element_text(size = 20)) +
-    labs(caption = "Warning: Experimental Forecast")
+    labs(caption = "Disclaimer: Experimental Forecast")
 }
 
 
@@ -152,7 +152,7 @@ plot_depth <- function(score_df) {
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.2)) +
     theme(text = element_text(size = 20),
           panel.grid.minor = element_blank()) +
-    labs(caption = "Warning: Experimental Forecast")
+    labs(caption = "Disclaimer: Experimental Forecast")
 }
 
 # Plot the % chance of being mixed - needs ensemble forecast
@@ -218,7 +218,7 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
       theme(text = element_text(size = 20),
             plot.caption = element_text(size = 12),
             panel.grid.minor = element_blank()) +
-      labs(caption = "Warning: Experimental Forecast")
+      labs(caption = "Disclaimer: Experimental Forecast")
   }
 
 
@@ -250,7 +250,7 @@ plot_mixing <- function(forecast_df, eval_depths = 'min/max', use_density = TRUE
       theme(text = element_text(size = 20),
             plot.caption = element_text(size = 12),
             panel.grid.minor = element_blank()) +
-      labs(caption = "Warning: Experimental Forecast")
+      labs(caption = "Disclaimer: Experimental Forecast")
   }
 
 
@@ -287,7 +287,7 @@ plot_ice <- function(forecast_df) {
     theme(text = element_text(size = 20),
           plot.caption = element_text(size = 12),
           panel.grid.minor = element_blank()) +
-    labs(caption = "Warning: Experimental Forecast")
+    labs(caption = "Disclaimer: Experimental Forecast")
 }
 
 
