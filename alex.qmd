@@ -67,4 +67,42 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |
 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
 ```
+
+## Canning Weir Pool
+
+```{r}
+most_recent <-  arrow::open_dataset(s3_score) |> 
+  filter(site_id %in% c("CANN")) |> 
+  summarize(max = max(reference_datetime)) |> 
+  collect() |> 
+  pull()
+
+df_insitu_scores <- arrow::open_dataset(s3_score) |> 
+  filter(variable == "temperature",
+         site_id %in% c("CANN"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect()
+
+```
+
+The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(most_recent), tzone = "America/New_York")` (Eastern U.S. time).
+
+```{r cann-temp}
+df_insitu_scores_lake <- df_insitu_scores |> 
+  filter(site_id == "CANN")
+
+plot_temp(df_insitu_scores_lake, depths = c(1.5)) 
+```
+
+```{r cann-mixing}
+# chance of being mixed
+temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+  filter(variable == "temperature",
+         site_id %in% c("CANN"),
+         reference_datetime == most_recent) |> 
+  dplyr::collect() 
+
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1.5), use_density = T, threshold = 0.1)
+```
+
 :::
