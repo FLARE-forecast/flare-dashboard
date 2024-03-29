@@ -91,7 +91,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "CANN")
 
-plot_temp(df_insitu_scores_lake, depths = c(1.5)) 
+plot_temp(df_insitu_scores_lake, depths = c(0.5, 3.5)) 
 ```
 
 ```{r cann-mixing}
