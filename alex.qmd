@@ -105,6 +105,6 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |
 # plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1.5, 5), use_density = T, threshold = 0.1)
 ```
 ```{r}
-plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1.5, 5), use_density = T, threshold = 0.1)
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
 ```
 :::
