@@ -40,7 +40,7 @@ s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/par
   
 ## define function arguments
 site <- 'sunp'
-model <- 'test_runS3'
+model <- 'glm_flare_v1'
 depths <- c(0,5,10)
 lake_name <- 'Lake Sunapee'
 y_limits <- c(-5,35)
