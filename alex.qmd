@@ -56,7 +56,7 @@ Experimental forecast for the Lake Alexandrina, developed in collaboration betwe
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "ALEX")
 
-plot_temp(df_insitu_scores_lake, depths = c(0.5,5)) 
+plot_temp(df_insitu_scores_lake, depths = c(0.5,4)) 
 ```
 
 ```{r alex-mixing}
