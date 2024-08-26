@@ -67,7 +67,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
-plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 4), use_density = T, threshold = 0.1)
 ```
 
 ## Canning Weir Pool
