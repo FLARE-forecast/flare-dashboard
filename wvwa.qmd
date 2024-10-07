@@ -363,7 +363,7 @@ plot_depth(depth_scores)
 s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+temperature_forecast <- arrow::open_dataset(s3_ccre) |> 
   filter(variable == "temperature",
          #site_id %in% c("ccre"),
          reference_datetime == most_recent) |> 
