@@ -33,7 +33,7 @@ Lake Alexandrina is located in South Australia and is monitored by the state wat
 ```{r}
 s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-  
+
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("ALEX")) |> 
   summarize(max = max(reference_datetime)) |> 
@@ -60,10 +60,12 @@ plot_temp(df_insitu_scores_lake, depths = c(0.5,4))
 ```
 
 ```{r alex-mixing}
+s3_alex <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ALEX/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+temperature_forecast <- arrow::open_dataset(s3_alex, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
-         site_id %in% c("ALEX"),
+         #site_id %in% c("ALEX"),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
@@ -91,7 +93,6 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 Experimental forecast for the Canning Weir Pool, developed in collaboration between the Center for Ecosystem Forecasting at Virginia Tech and the Aquatic EcoDynamics Research Group at the University of Western Australia. The top figures show water temperature forecasts for 1 to 35 days into the future for 0.5 m and 3.5 m depth. The black line shows the median water temperature forecast, with the blue shared area encompassing the 90% predictive intervals. The bottom figure shows the percent chance of the waterbody mixing between 0.5 and 5 m, determined by a 0.1 g/cm3 density gradient.
 
-
 ```{r cann-temp}
 df_insitu_scores_lake <- df_insitu_scores |> 
   filter(site_id == "CANN")
@@ -109,6 +110,7 @@ temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |
 
 # plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1.5, 5), use_density = T, threshold = 0.1)
 ```
+
 ```{r}
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
 ```
