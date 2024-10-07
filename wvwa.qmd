@@ -84,7 +84,7 @@ s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet
 temperature_forecast <- arrow::open_dataset(s3_fcre, unify_schemas = FALSE) |> 
   filter(variable == "temperature",
          #site_id %in% c("fcre"),
-         model_id %in% c('glm_flare_v1'),
+         #model_id %in% c('glm_flare_v1'),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
@@ -97,7 +97,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_densi
 ice_forecasts <- arrow::open_dataset(s3_fcre, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
          #site_id %in% c("fcre"),
-         model_id %in% c('glm_flare_v1'),
+         #model_id %in% c('glm_flare_v1'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -352,7 +352,7 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
-         site_id %in% c("ccre"),
+         #site_id %in% c("ccre"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
