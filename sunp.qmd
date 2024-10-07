@@ -112,20 +112,22 @@ df_horizon |>
 
 ```{r sunp-depth, eval=F}
 # depth plot
-depth_scores <- arrow::open_dataset(s3_score) |> 
-  filter(variable == "depth",
-         site_id %in% c("sunp"),
-         reference_datetime == most_recent) |> 
-  dplyr::collect()
-
-plot_depth(depth_scores) 
+# depth_scores <- arrow::open_dataset(s3_score) |> 
+#   filter(variable == "depth",
+#          site_id %in% c("sunp"),
+#          reference_datetime == most_recent) |> 
+#   dplyr::collect()
+# 
+# plot_depth(depth_scores) 
 ```
 
 ```{r sunp-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+s3_sunp <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=sunp/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
+temperature_forecast <- arrow::open_dataset(s3_sunp, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
-         site_id %in% c("sunp"),
+         #site_id %in% c("sunp"),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 10), use_density = T, threshold = 0.1)
@@ -134,9 +136,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 10), use_dens
 
 ```{r sunp-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_sunp, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("sunp"),
+         #site_id %in% c("sunp"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
