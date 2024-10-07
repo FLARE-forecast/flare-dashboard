@@ -114,6 +114,10 @@ temperature_forecast <- arrow::open_dataset(s3_cann, unify_schemas = TRUE) |>
 ```
 
 ```{r}
+if(nrow(temperature_forecast) != 0){
 plot_mixing(forecast_df = temperature_forecast, eval_depths = c(0.5, 5), use_density = T, threshold = 0.1)
+} else{
+  message('missing temperature forecast')
+}
 ```
 :::
