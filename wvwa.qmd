@@ -78,10 +78,12 @@ plot_depth(depth_scores)
 ```
 
 ```{r fcre-mixing}
+s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=fcre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast, unify_schemas = FALSE) |> 
+temperature_forecast <- arrow::open_dataset(s3_fcre, unify_schemas = FALSE) |> 
   filter(variable == "temperature",
-         site_id %in% c("fcre"),
+         #site_id %in% c("fcre"),
          model_id %in% c('glm_flare_v1'),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
@@ -92,9 +94,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 8), use_densi
 
 ```{r fcre-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast, unify_schemas = TRUE) |> 
+ice_forecasts <- arrow::open_dataset(s3_fcre, unify_schemas = TRUE) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("fcre"),
+         #site_id %in% c("fcre"),
          model_id %in% c('glm_flare_v1'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
@@ -272,9 +274,11 @@ plot_depth(depth_scores)
 
 ```{r bvre-mixing}
 # chance of being mixed
-temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
+s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
+temperature_forecast <- arrow::open_dataset(s3_fcre) |> 
   filter(variable == "temperature",
-         site_id %in% c("bvre"),
+         #site_id %in% c("bvre"),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
@@ -284,9 +288,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 9), use_densi
 
 ```{r bvre-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
+ice_forecasts <- arrow::open_dataset(s3_bvre) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("bvre"),
+         #site_id %in% c("bvre"),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -356,10 +360,12 @@ plot_depth(depth_scores)
 ```
 
 ```{r ccre-mixing}
+s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "temperature",
-         site_id %in% c("ccre"),
+         #site_id %in% c("ccre"),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
@@ -369,9 +375,9 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 19), use_dens
 
 ```{r ccre-ice}
 # Ice plot
-ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
+ice_forecasts <- arrow::open_dataset(s3_ccre) |> 
   filter(variable == "ice_thickness",
-         site_id %in% c("ccre"),
+         #site_id %in% c("ccre"),
          reference_datetime == most_recent,
          !is.na(prediction)) |> 
   dplyr::collect() 
