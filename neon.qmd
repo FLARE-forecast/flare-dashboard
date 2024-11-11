@@ -300,7 +300,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r prla-ice, eval = TRUE}
+```{r prla-ice, eval = FALSE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
@@ -374,7 +374,7 @@ plot_mixing(forecast_df = temperature_forecast, eval_depths = 'max/min', use_den
 
 ```
 
-```{r prpo-ice, eval = TRUE}
+```{r prpo-ice, eval = FALSE}
 # Ice plot
 ice_forecasts <- arrow::open_dataset(s3_forecast) |> 
   filter(variable == "ice_thickness",
