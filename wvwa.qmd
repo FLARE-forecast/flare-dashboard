@@ -276,7 +276,7 @@ plot_depth(depth_scores)
 # chance of being mixed
 s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 
-temperature_forecast <- arrow::open_dataset(s3_fcre) |> 
+temperature_forecast <- arrow::open_dataset(s3_bvre) |> 
   filter(variable == "temperature",
          #site_id %in% c("bvre"),
          reference_datetime == most_recent) |> 
@@ -298,23 +298,23 @@ plot_ice(ice_forecasts)
 ```
 
 ```{r eval = FALSE}
-df <- arrow::open_dataset(s3) |> 
-  filter(variable == "temperature",
-         depth %in% c(1.0),
-         site_id == "bvre") |> 
-  dplyr::collect() 
+#df <- arrow::open_dataset(s3) |> 
+#  filter(variable == "temperature",
+ #        depth %in% c(1.0),
+#         site_id == "bvre") |> 
+#  dplyr::collect() 
 
-bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
+#bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
   
-  df |> 
-  filter(horizon > 0) |> 
-  ggplot(aes(x = observation, y = mean, color = factor(horizon))) +
-  geom_point() +
-  geom_abline(slope = 1, intercept = 0) +
-  ylim(bounds) +
-  xlim(bounds) +
-  labs(x = "observed", y = "predicted") +
-  theme_bw()
+#  df |> 
+#  filter(horizon > 0) |> 
+#  ggplot(aes(x = observation, y = mean, color = factor(horizon))) +
+#  geom_point() +
+ # geom_abline(slope = 1, intercept = 0) +
+#  ylim(bounds) +
+#  xlim(bounds) +
+#  labs(x = "observed", y = "predicted") +
+#  theme_bw()
 ```
 
 ## Carvins Cove Reservoir
