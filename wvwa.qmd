@@ -39,19 +39,25 @@ Forecasts are developed in [partnership with WVWA](https://video.vt.edu/media/Re
 ```{r}
 s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-  
+
+# s3_score_vera <- arrow::s3_bucket(bucket = "bio230121-bucket01/vera4cast/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+# 
+# s3_summaries_vera <- arrow::s3_bucket(bucket = "bio230121-bucket01/vera4cast/forecasts/bundled-summaries", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+# 
+# s3_forecasts_parquet_vera <- arrow::s3_bucket(bucket = "bio230121-bucket01/vera4cast/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("fcre"), 
-         model_id %in% c('glm_flare_v1')) |> 
+         model_id %in% c('glm_aed_flare_v3')) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
 
 df_insitu_scores <- arrow::open_dataset(s3_score) |> 
-  filter(variable == "temperature",
+  filter(variable == "Temp_C_mean",
          # depth %in% c(0.5),
          site_id %in% c("fcre"),
-         model_id %in% c('glm_flare_v1'),
+         model_id %in% c('glm_aed_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 ```
@@ -60,7 +66,8 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r fcre-temp}
 df_insitu_scores_lake <- df_insitu_scores |> 
-  filter(site_id == "fcre")
+  filter(site_id == "fcre") #|> 
+  #rename(depth = depth_m)
 
 plot_temp(df_insitu_scores_lake, depths = c(1,8)) 
 ```
@@ -70,7 +77,7 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
          site_id %in% c("fcre"),
-         model_id %in% c('glm_flare_v1'),
+         model_id %in% c('glm_aed_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -78,11 +85,11 @@ plot_depth(depth_scores)
 ```
 
 ```{r fcre-mixing}
-s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=fcre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=fcre/model_id=glm_aed_flare_v3", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_fcre, unify_schemas = FALSE) |> 
-  filter(variable == "temperature",
+  filter(variable == "Temp_C_mean",
          #site_id %in% c("fcre"),
          #model_id %in% c('glm_flare_v1'),
          reference_datetime == most_recent) |> 
@@ -111,7 +118,7 @@ df <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          depth %in% c(1.0),
          site_id == "fcre",
-         model_id %in% c('glm_flare_v1')) |> 
+         model_id %in% c('glm_aed_flare_v3')) |> 
   dplyr::collect() 
 
 bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
@@ -238,7 +245,8 @@ s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet",
 s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("bvre")) |> 
+  filter(site_id %in% c("bvre"),
+         model_id %in% c('glm_flare_v3')) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -247,6 +255,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("bvre"),
+         model_id %in% c('glm_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 ```
@@ -274,7 +283,7 @@ plot_depth(depth_scores)
 
 ```{r bvre-mixing}
 # chance of being mixed
-s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v3", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 
 temperature_forecast <- arrow::open_dataset(s3_bvre) |> 
   filter(variable == "temperature",
@@ -325,7 +334,8 @@ s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/par
 
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
-  filter(site_id %in% c("ccre")) |> 
+  filter(site_id %in% c("ccre"),
+         model_id %in% c('glm_flare_v3')) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -334,6 +344,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("ccre"),
+         model_id %in% c('glm_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 ```
@@ -342,8 +353,7 @@ The most recent forecast is from `r lubridate::with_tz(lubridate::as_datetime(mo
 
 ```{r}
 
-df_insitu_scores_lake <- df_insitu_scores |> 
-  filter(site_id == "ccre")
+df_insitu_scores_lake <- df_insitu_scores
 
 plot_temp(df_insitu_scores_lake, depths = c(1,8))  
 ```
@@ -352,7 +362,8 @@ plot_temp(df_insitu_scores_lake, depths = c(1,8))
 # depth plot
 depth_scores <- arrow::open_dataset(s3_score) |> 
   filter(variable == "depth",
-         #site_id %in% c("ccre"),
+         site_id %in% c("ccre"),
+         model_id %in% c('glm_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 
@@ -360,12 +371,12 @@ plot_depth(depth_scores)
 ```
 
 ```{r ccre-mixing}
-s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v3", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_ccre) |> 
   filter(variable == "temperature",
-         #site_id %in% c("ccre"),
+         site_id %in% c("ccre"),
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
