@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "Dashboard",
     "section": "",
-    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2025-05-01\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2025-05-02\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "wvwa.html",
@@ -67,14 +67,14 @@
     "href": "status.html",
     "title": "Status",
     "section": "",
-    "text": "[1] \"lake-liro-glm\"\n[1] \"lake-sunp-glm\"\n[1] \"lake-bvr-aed\"\n[1] \"Job has no pings, skipping...\"\n[1] \"lake-cann-glm\"\n[1] \"lake-prla-glm\"\n[1] \"lake-cram-glm\"\n[1] \"lake-fcre-glm\"\n[1] \"lake-feea-glm\"\n[1] \"Job has no pings, skipping...\"\n[1] \"dashboard-build\"\n[1] \"lake-fcre-aed\"\n[1] \"lake-barc-glm\"\n[1] \"lake-alex-glm\"\n[1] \"lake-sugg-glm\"\n[1] \"noaa-stage3\"\n[1] \"lake-submit-neon-forecasts\"\n[1] \"lake-took-glm\"\n[1] \"noaa-stage-1-2\"\n[1] \"lake-ccre-glm\"\n[1] \"lake-bvre-glm\"\n[1] \"lake-prpo-glm\""
+    "text": "[1] \"lake-liro-glm\"\n[1] \"lake-sunp-glm\"\n[1] \"lake-cram-glm\"\n[1] \"lake-bvr-aed\"\n[1] \"Job has no pings, skipping...\"\n[1] \"lake-prla-glm\"\n[1] \"lake-cann-glm\"\n[1] \"lake-fcre-glm\"\n[1] \"lake-feea-glm\"\n[1] \"Job has no pings, skipping...\"\n[1] \"dashboard-build\"\n[1] \"lake-fcre-aed\"\n[1] \"lake-barc-glm\"\n[1] \"lake-alex-glm\"\n[1] \"lake-sugg-glm\"\n[1] \"noaa-stage3\"\n[1] \"lake-submit-neon-forecasts\"\n[1] \"lake-took-glm\"\n[1] \"noaa-stage-1-2\"\n[1] \"lake-ccre-glm\"\n[1] \"lake-bvre-glm\"\n[1] \"lake-prpo-glm\""
   },
   {
     "objectID": "status.html#workflow-status",
     "href": "status.html#workflow-status",
     "title": "Status",
     "section": "",
-    "text": "[1] \"lake-liro-glm\"\n[1] \"lake-sunp-glm\"\n[1] \"lake-bvr-aed\"\n[1] \"Job has no pings, skipping...\"\n[1] \"lake-cann-glm\"\n[1] \"lake-prla-glm\"\n[1] \"lake-cram-glm\"\n[1] \"lake-fcre-glm\"\n[1] \"lake-feea-glm\"\n[1] \"Job has no pings, skipping...\"\n[1] \"dashboard-build\"\n[1] \"lake-fcre-aed\"\n[1] \"lake-barc-glm\"\n[1] \"lake-alex-glm\"\n[1] \"lake-sugg-glm\"\n[1] \"noaa-stage3\"\n[1] \"lake-submit-neon-forecasts\"\n[1] \"lake-took-glm\"\n[1] \"noaa-stage-1-2\"\n[1] \"lake-ccre-glm\"\n[1] \"lake-bvre-glm\"\n[1] \"lake-prpo-glm\""
+    "text": "[1] \"lake-liro-glm\"\n[1] \"lake-sunp-glm\"\n[1] \"lake-cram-glm\"\n[1] \"lake-bvr-aed\"\n[1] \"Job has no pings, skipping...\"\n[1] \"lake-prla-glm\"\n[1] \"lake-cann-glm\"\n[1] \"lake-fcre-glm\"\n[1] \"lake-feea-glm\"\n[1] \"Job has no pings, skipping...\"\n[1] \"dashboard-build\"\n[1] \"lake-fcre-aed\"\n[1] \"lake-barc-glm\"\n[1] \"lake-alex-glm\"\n[1] \"lake-sugg-glm\"\n[1] \"noaa-stage3\"\n[1] \"lake-submit-neon-forecasts\"\n[1] \"lake-took-glm\"\n[1] \"noaa-stage-1-2\"\n[1] \"lake-ccre-glm\"\n[1] \"lake-bvre-glm\"\n[1] \"lake-prpo-glm\""
   },
   {
     "objectID": "sunp.html",
