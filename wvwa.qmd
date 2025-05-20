@@ -37,8 +37,8 @@ Forecasts are developed in [partnership with WVWA](https://video.vt.edu/media/Re
 ## Falling Creek Reservoir
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
 # s3_score_vera <- arrow::s3_bucket(bucket = "bio230121-bucket01/vera4cast/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
 # 
@@ -85,7 +85,7 @@ plot_depth(depth_scores)
 ```
 
 ```{r fcre-mixing}
-s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=fcre/model_id=glm_aed_flare_v3", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_fcre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=fcre/model_id=glm_aed_flare_v3", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_fcre, unify_schemas = FALSE) |> 
@@ -241,8 +241,8 @@ bounds <- range(c(df$observation, df$mean), na.rm = TRUE)
 ## Beaver Dam Reservoir
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("bvre"),
@@ -283,7 +283,7 @@ plot_depth(depth_scores)
 
 ```{r bvre-mixing}
 # chance of being mixed
-s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v3", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_bvre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=bvre/model_id=glm_flare_v3", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
 temperature_forecast <- arrow::open_dataset(s3_bvre) |> 
   filter(variable == "temperature",
@@ -329,8 +329,8 @@ plot_ice(ice_forecasts)
 ## Carvins Cove Reservoir
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
@@ -371,7 +371,7 @@ plot_depth(depth_scores)
 ```
 
 ```{r ccre-mixing}
-s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_ccre <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=ccre/model_id=glm_flare_v1", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
 # chance of being mixed
 temperature_forecast <- arrow::open_dataset(s3_ccre) |> 

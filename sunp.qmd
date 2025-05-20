@@ -35,8 +35,8 @@ Forecasts are generated in collaboration with the LPSA and Kathleen Weathers fro
 ## Lake Sunapee
 
 ```{r}
-s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
-s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_score <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/scores/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
+s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
   
 ## define function arguments
 site <- 'sunp'
@@ -123,7 +123,7 @@ df_horizon |>
 
 ```{r sunp-mixing}
 # chance of being mixed
-s3_sunp <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=sunp/model_id=glm_flare_v1", endpoint_override = "renc.osn.xsede.org", anonymous = TRUE)
+s3_sunp <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/parquet/site_id=sunp/model_id=glm_flare_v3", endpoint_override = "amnh1.osn.mghpcc.org", anonymous = TRUE)
 
 temperature_forecast <- arrow::open_dataset(s3_sunp, unify_schemas = TRUE) |> 
   filter(variable == "temperature",
