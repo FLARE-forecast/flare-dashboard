@@ -335,7 +335,7 @@ s3_forecast <- arrow::s3_bucket(bucket = "bio230121-bucket01/flare/forecasts/par
   
 most_recent <-  arrow::open_dataset(s3_score) |> 
   filter(site_id %in% c("ccre"),
-         model_id %in% c('glm_flare_v1')) |> 
+         model_id %in% c('glm_flare_v3')) |> 
   summarize(max = max(reference_datetime)) |> 
   collect() |> 
   pull()
@@ -344,7 +344,7 @@ df_insitu_scores <- arrow::open_dataset(s3_score) |>
   filter(variable == "temperature",
          # depth %in% c(0.5),
          site_id %in% c("ccre"),
-         model_id %in% c('glm_flare_v1'),
+         model_id %in% c('glm_flare_v3'),
          reference_datetime == most_recent) |> 
   dplyr::collect()
 ```
