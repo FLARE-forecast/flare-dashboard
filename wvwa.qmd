@@ -380,7 +380,7 @@ temperature_forecast <- arrow::open_dataset(s3_ccre) |>
          reference_datetime == most_recent) |> 
   dplyr::collect() 
 
-plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 19), use_density = T, threshold = 0.1)
+plot_mixing(forecast_df = temperature_forecast, eval_depths = c(1, 18), use_density = T, threshold = 0.1)
 
 ```
 
