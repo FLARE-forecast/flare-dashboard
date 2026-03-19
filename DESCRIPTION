@@ -20,7 +20,6 @@ Depends: tidyverse,
          brio,
          reactable,
          httr,
-         reactablefmtr,
          flareVis,
          vis4cast,
          leaflet
