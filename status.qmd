@@ -15,6 +15,7 @@ library(score4cast)
 library(glue)
 library(reactable)
 library(httr)
+remotes::install_github('kcuilla/reactablefmtr')
 library(reactablefmtr)
 score4cast::ignore_sigpipe()
 ## source function script 
