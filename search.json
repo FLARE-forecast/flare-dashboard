@@ -74,7 +74,7 @@
     "href": "status.html",
     "title": "Status",
     "section": "",
-    "text": "AsioHeaders (NA      -&gt; 1.30.2-1) [CRAN]\nwebsocket   (NA      -&gt; 1.4.4   ) [CRAN]\nsourcetools (0.1.7-1 -&gt; 0.1.7-2 ) [CRAN]\nchromote    (NA      -&gt; 0.5.1   ) [CRAN]\nwebshot2    (NA      -&gt; 0.1.2   ) [CRAN]\ntippy       (NA      -&gt; 0.1.0   ) [CRAN]\n\n\n── R CMD build ─────────────────────────────────────────────────────────────────\n* checking for file ‘/tmp/Rtmp677ZcX/remotes9e94272702e/kcuilla-reactablefmtr-b271131/DESCRIPTION’ ... OK\n* preparing ‘reactablefmtr’:\n* checking DESCRIPTION meta-information ... OK\n* checking for LF line-endings in source and make files and shell scripts\n* checking for empty or unneeded directories\n* building ‘reactablefmtr_2.1.0.tar.gz’"
+    "text": "AsioHeaders (NA      -&gt; 1.30.2-1) [CRAN]\nwebsocket   (NA      -&gt; 1.4.4   ) [CRAN]\nsourcetools (0.1.7-1 -&gt; 0.1.7-2 ) [CRAN]\nchromote    (NA      -&gt; 0.5.1   ) [CRAN]\nwebshot2    (NA      -&gt; 0.1.2   ) [CRAN]\ntippy       (NA      -&gt; 0.1.0   ) [CRAN]\n\n\n── R CMD build ─────────────────────────────────────────────────────────────────\n* checking for file ‘/tmp/RtmpVIlOJ0/remotes9ee55253e21/kcuilla-reactablefmtr-b271131/DESCRIPTION’ ... OK\n* preparing ‘reactablefmtr’:\n* checking DESCRIPTION meta-information ... OK\n* checking for LF line-endings in source and make files and shell scripts\n* checking for empty or unneeded directories\n* building ‘reactablefmtr_2.1.0.tar.gz’"
   },
   {
     "objectID": "status.html#workflow-status",
@@ -88,7 +88,7 @@
     "href": "index.html",
     "title": "Dashboard",
     "section": "",
-    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2026-04-19\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
+    "text": "Welcome to the Forecasting Lake and Reservoir Ecosystems (FLARE) dashboard!\nThis page was last updated on 2026-04-20\nThis dashboard provides daily updates to visualize recent water quality forecasts generated across the world using FLARE system. FLARE iterative updates model simulations using real-time data and quantifies uncertainty in forecasts.\n\nFLARE sites\n\n\n\n\n\n\nThis material is based upon work supported by the National Science Foundation as part of awards CNS-1737424, DBI-1933102, and DBI-1933016​. Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."
   },
   {
     "objectID": "ntl.html",
