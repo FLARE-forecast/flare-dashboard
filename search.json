@@ -95,7 +95,7 @@
     "href": "status.html",
     "title": "Status",
     "section": "",
-    "text": "AsioHeaders (NA -&gt; 1.30.2-1) [CRAN]\nwebsocket   (NA -&gt; 1.4.4   ) [CRAN]\nchromote    (NA -&gt; 0.5.1   ) [CRAN]\nwebshot2    (NA -&gt; 0.1.2   ) [CRAN]\ntippy       (NA -&gt; 0.1.0   ) [CRAN]\n\n\n── R CMD build ─────────────────────────────────────────────────────────────────\n* checking for file ‘/tmp/RtmpijVyFA/remotes860738285bb/kcuilla-reactablefmtr-b271131/DESCRIPTION’ ... OK\n* preparing ‘reactablefmtr’:\n* checking DESCRIPTION meta-information ... OK\n* checking for LF line-endings in source and make files and shell scripts\n* checking for empty or unneeded directories\n* building ‘reactablefmtr_2.1.0.tar.gz’"
+    "text": "AsioHeaders (NA -&gt; 1.30.2-1) [CRAN]\nwebsocket   (NA -&gt; 1.4.4   ) [CRAN]\nchromote    (NA -&gt; 0.5.1   ) [CRAN]\nwebshot2    (NA -&gt; 0.1.2   ) [CRAN]\ntippy       (NA -&gt; 0.1.0   ) [CRAN]\n\n\n── R CMD build ─────────────────────────────────────────────────────────────────\n* checking for file ‘/tmp/Rtmp7WYDZT/remotes8594bd4b920/kcuilla-reactablefmtr-b271131/DESCRIPTION’ ... OK\n* preparing ‘reactablefmtr’:\n* checking DESCRIPTION meta-information ... OK\n* checking for LF line-endings in source and make files and shell scripts\n* checking for empty or unneeded directories\n* building ‘reactablefmtr_2.1.0.tar.gz’"
   },
   {
     "objectID": "status.html#workflow-status",
